@@ -1,5 +1,6 @@
 import React from 'react';
-class Tokunou extends React.Component {
+
+class TokunouButton extends React.Component {
   render() {
     return (
       <div>
@@ -10,4 +11,4 @@ class Tokunou extends React.Component {
 
 }
 
-export default Tokunou;
+export default TokunouButton;
