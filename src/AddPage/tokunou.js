@@ -2,7 +2,9 @@ import React from 'react';
 class Tokunou extends React.Component {
   render() {
     return (
-      <button name="tokunou">tokunou</button>
+      <div>
+        <button name="tokunou">特殊能力</button>
+      </div>
     );
   }
 

@@ -2,7 +2,10 @@ import React from 'react';
 class Name extends React.Component {
   render() {
     return (
-      <input type="text" name="nameForm">name</input>
+      <div>
+        <label htmlFor="nameForm">名前</label>
+        <input type="text" name="nameForm" required />
+      </div>
     );
   }
 

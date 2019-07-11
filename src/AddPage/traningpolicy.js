@@ -2,7 +2,9 @@ import React from 'react';
 class TraningPolicy extends React.Component {
   render() {
     return (
-      <textarea name="traPolicy"></textarea>
+      <div>
+        <textarea name="traPolicy" placeholder="育成方針"></textarea>
+      </div>
     );
   }
 
