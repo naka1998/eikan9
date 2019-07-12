@@ -54,8 +54,7 @@
   bottom: 50px;
   height: 50px;
   left: -2px;
-  background-color: white;
-  border: 1px black solid;
+  background-color: #999900;
 }
 .addButton{
   width: 100px;
