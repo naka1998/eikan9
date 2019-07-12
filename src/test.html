@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    #filterwrap {
+      margin: 0 auto;
+      width: 25%;
+      border: 1px black dotted;
+      padding: 2px;
+    }
+
+    #posDiv,
+    #persDiv {
+      border: 1px grey solid;
+      margin: 2px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .posSpan,
+    .perSpan {
+      width: 80px;
+    }
+
+    .check {
+      border: 1px black solid;
+      margin: 5px 2px;
+      display: block;
+    }
+
+    .check input {
+      display: none;
+    }
+
+    .check input:checked+.posSpan {
+      background-color: red;
+      color: white;
+    }
+
+    .check input:checked+.perSpan {
+      background-color: blue;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="filterwrap">
+    <div>
+      <label>
+        <input type="number" />
+        年 ～
+      </label>
+      <label>
+        <input type="number" />
+        年
+      </label>
+    </div>
+    <div id="posDiv">
+      ポジション：<br>
+      <label class="check">
+        <input type="checkbox" value="1" />
+        <span class="posSpan">投手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="2" />
+        <span class="posSpan">捕手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="3" />
+        <span class="posSpan">一塁手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="4" />
+        <span class="posSpan">二塁手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="5" />
+        <span class="posSpan">三塁手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="6" />
+        <span class="posSpan">遊撃手</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="7" />
+        <span class="posSpan">外野手</span>
+      </label>
+
+    </div>
+    <div id="persDiv">
+      性格：<br>
+      <label class="check">
+        <input type="checkbox" value="0">
+        <span class="perSpan">天才肌</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="1">
+        <span class="perSpan">ごくふつう</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="2">
+        <span class="perSpan">お調子者</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="3">
+        <span class="perSpan">やんちゃ</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="4">
+        <span class="perSpan">クール</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="5">
+        <span class="perSpan">したたか</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="6">
+        <span class="perSpan">内気</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" value="7">
+        <span class="perSpan">熱血漢</span>
+      </label>
+    </div>
+    <button>OK</button>
+  </div>
+
+
+</body>
+
+</html>

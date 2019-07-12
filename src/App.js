@@ -9,14 +9,14 @@ import Change from "./change";
 const App = () => (
   <BrowserRouter>
     <div>
-      <Route exact path='/' component={Main} />
-      <Route path='/add' component={Add} />
-      <Route path='/addsum' component={AddSum} />
-      <Route path='/change' component={Change} />
+      <Route exact path='/eikan9' component={Main} />
+      <Route path='/eikan9/add' component={Add} />
+      <Route path='/eikan9/addsum' component={AddSum} />
+      <Route path='/eikan9/change' component={Change} />
       <footer id="navbar">
-        <button className="navcont"><Link to='/'>Main</Link></button>
-        <button className="navcont"><Link to='/add'>Add</Link></button>
-        <button className="navcont"><Link to="/addsum">AddSum</Link></button>
+        <button className="navcont"><Link to='/eikan9'>Main</Link></button>
+        <button className="navcont"><Link to='/eikan9/add'>Add</Link></button>
+        <button className="navcont"><Link to="/eikan9/addsum">AddSum</Link></button>
       </footer >
     </div >
   </BrowserRouter >
