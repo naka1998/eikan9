@@ -1,10 +1,14 @@
 import React from 'react';
+import '../App.css';
+
 class Name extends React.Component {
   render() {
     return (
       <div>
-        <label htmlFor="nameForm">名前</label>
-        <input type="text" name="nameForm" required />
+        <label>
+          <span>name:</span>
+          <input type="text" required />
+        </label>
       </div>
     );
   }

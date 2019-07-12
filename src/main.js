@@ -6,15 +6,21 @@ import PlayerCard from "./mainpage/player";
 class Main extends React.Component {
   render() {
     return (
-      <div id="wrap">
-        <Sort />
-        <Filter />
-        <PlayerCard />
-        <PlayerCard />
-        <PlayerCard />
-        <PlayerCard />
-        <PlayerCard />
-        <PlayerCard />
+      <div>
+        <header>
+          <Sort id="sort" />
+          <Filter id="filter" />
+        </header>
+        <div id="wrap">
+          <div id="playerwrap">
+            <PlayerCard />
+            <PlayerCard />
+            <PlayerCard />
+            <PlayerCard />
+            <PlayerCard />
+            <PlayerCard />
+          </div>
+        </div>
       </div>
     );
   }

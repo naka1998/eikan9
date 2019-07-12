@@ -1,6 +1,7 @@
 //  選手を個別に追加していくページ
 import React from 'react';
 import './App.css';
+import "./add.css";
 import AddBar from "./Add_or_Change/addbar"
 import Name from "./Add_or_Change/name";
 import Personality from "./Add_or_Change/personality";

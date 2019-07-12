@@ -9,7 +9,7 @@ const customStyles = {
     backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   content: {
-    top: '20%',
+    top: '25%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
@@ -41,7 +41,7 @@ class Filter extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>フィルター</button>
+        <button id="filter" onClick={this.openModal}>フィルター</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
