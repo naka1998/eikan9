@@ -3,12 +3,12 @@ import React from 'react';
 class Sort extends React.Component {
   render() {
     return (
-      <div>
+      <span>
         <select>
-          <option value="0">year</option>
-          <option value="1">position</option>
+          <option value="0">年度順</option>
+          <option value="1">ポジション順</option>
         </select>
-      </div>
+      </span>
     );
   }
 }

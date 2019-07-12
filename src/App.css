@@ -1,16 +1,23 @@
 #wrap{
-  width: 80%;
+  width: 90%;
   border: 1px black solid;
-  margin: 5px auto;
+  margin: 5px auto 90px auto;
   padding: 10px;
 }
 #navbar{
-width: 100%;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
 }
 .navcont{
-  display: inline;
+  height: 50px;
+  width: 33%;
+  line-height: 50px;
   list-style-type: none;
   text-align: center;
+  font-size: 26px;
   border: 1px black solid;
   background-color:#009900;
 }
@@ -18,13 +25,51 @@ width: 100%;
   text-decoration: none;
   color: white;
 }
-.switchButton{
-  position: fixed;
-  right: 5px;
-  bottom: 10px;
-}
+
 .playerCard{
   width: 100%;
+  border: 1px #4689FF solid;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px 0px;
+  background-color: #D9E5FF;
+}
+.playerCard p{
+  font-size: 18px;
+  height: 25px;
+  border: 1px black solid;
+  margin: 2px 5px;
+  padding: 0px 3px;
+}
+.cardPers,.cardTokunou,.cardPolicy{
+  width: 100%;
+}
+.addcard{
+  margin: 4px 0px;
+  border: 1px black solid;
+}
+#addbar{
+  width: 100%;
+  position: fixed;
+  bottom: 50px;
   height: 50px;
-  border: 1px black dotted;
+  left: -2px;
+  background-color: white;
+  border: 1px black solid;
+}
+.addButton{
+  width: 100px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%)
+}
+.switchButton{
+  width: 80px;
+  height: 36px;
+  position: absolute;
+  left: 83%;
+  top: 50%;
+  transform : translate(-50%,-50%)
 }

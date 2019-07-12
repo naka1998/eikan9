@@ -6,22 +6,20 @@ import Add from "./add";
 import AddSum from "./add_sum";
 import Change from "./change";
 
-
 const App = () => (
   <BrowserRouter>
     <div>
-      <ul id="navbar">
-        <li className="navcont"><Link to='/'>Main</Link></li>
-        <li className="navcont"><Link to='/add'>Add</Link></li>
-        <li className="navcont"><Link to="/addsum">AddSum</Link></li>
-      </ul>
-
       <Route exact path='/' component={Main} />
       <Route path='/add' component={Add} />
       <Route path='/addsum' component={AddSum} />
       <Route path='/change' component={Change} />
-    </div>
-  </BrowserRouter>
+      <footer id="navbar">
+        <button className="navcont"><Link to='/'>Main</Link></button>
+        <button className="navcont"><Link to='/add'>Add</Link></button>
+        <button className="navcont"><Link to="/addsum">AddSum</Link></button>
+      </footer >
+    </div >
+  </BrowserRouter >
 )
 
 export default App;
