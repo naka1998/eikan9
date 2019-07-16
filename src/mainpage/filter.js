@@ -17,6 +17,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 };
+//  filterValueに状態が入ってる
 class Filter extends React.Component {
   constructor() {
     super();
@@ -38,6 +39,9 @@ class Filter extends React.Component {
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
+  resetState() {
+
+  }
   render() {
     return (
       <div>
@@ -51,86 +55,86 @@ class Filter extends React.Component {
           <div id="filterwrap">
             <div id="yearDiv">
               <label>
-                <input type="tel" placeholder="2018" />
+                <input type="tel" value={this.props.filterValue.year1} />
                 <span>年 ～</span>
               </label>
               <label>
-                <input type="tel" placeholder="2019" />
+                <input type="tel" value={this.props.filterValue.year2} />
                 <span>年</span>
               </label>
             </div>
 
             <div id="posDiv">
               ポジション：<br />
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="1" />
-                <span class="posSpan">投手</span>
+                <span className="posSpan">投手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="2" />
-                <span class="posSpan">捕手</span>
+                <span className="posSpan">捕手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="3" />
-                <span class="posSpan">一塁手</span>
+                <span className="posSpan">一塁手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="4" />
-                <span class="posSpan">二塁手</span>
+                <span className="posSpan">二塁手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="5" />
-                <span class="posSpan">三塁手</span>
+                <span className="posSpan">三塁手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="6" />
-                <span class="posSpan">遊撃手</span>
+                <span className="posSpan">遊撃手</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="7" />
-                <span class="posSpan">外野手</span>
+                <span className="posSpan">外野手</span>
               </label>
             </div>
 
             <div id="persDiv">
               性格：<br />
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="0" />
-                <span class="perSpan">天才肌</span>
+                <span className="perSpan">天才肌</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="1" />
-                <span class="perSpan">ごくふつう</span>
+                <span className="perSpan">ごくふつう</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="2" />
-                <span class="perSpan">お調子者</span>
+                <span className="perSpan">お調子者</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="3" />
-                <span class="perSpan">やんちゃ</span>
+                <span className="perSpan">やんちゃ</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="4" />
-                <span class="perSpan">クール</span>
+                <span className="perSpan">クール</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="5" />
-                <span class="perSpan">したたか</span>
+                <span className="perSpan">したたか</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="6" />
-                <span class="perSpan">内気</span>
+                <span className="perSpan">内気</span>
               </label>
-              <label class="check">
+              <label className="check">
                 <input type="checkbox" value="7" />
-                <span class="perSpan">熱血漢</span>
+                <span className="perSpan">熱血漢</span>
               </label>
             </div>
           </div>
           <div id="buttonwrap">
             <button id="okButton">OK</button>
-            <button id="resetButton">Reset</button>
+            <button id="resetButton" onClick={this.resetState()}>Reset</button>
           </div>
         </Modal>
       </div >

@@ -4,7 +4,7 @@ class Personality extends React.Component {
   render() {
     return (
       <div>
-        <label htmlFor="personality">性格</label>
+        <label htmlFor="personality">性格:</label>
         <select name="personality">
           <option value="0">天才肌	</option>
           <option value="1">ごくふつう</option>

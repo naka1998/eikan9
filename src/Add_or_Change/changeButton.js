@@ -4,7 +4,7 @@ class ChangeButton extends React.Component {
   render() {
     return (
       <div>
-        <button name="changeButton">変更</button>
+        <button name="changeButton">å¤‰æ›´</button>
       </div>
     );
   }

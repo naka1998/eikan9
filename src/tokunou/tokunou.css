@@ -10,7 +10,7 @@
   border: 1px black dashed;
   margin: 5px 2px;
 }
-input{
+input[type="checkbox"]{
   display: none;
 }
 .check input:checked+.tokuSpan {

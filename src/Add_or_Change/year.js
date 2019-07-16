@@ -4,9 +4,11 @@ import React from 'react';
 class Year extends React.Component {
   render() {
     return (
-      <div>
-        <input type="number" value="2019" id="yearForm" name="yearForm"></input>
-        <label htmlFor="yearForm">年度選手追加</label>
+      <div id="yearForm">
+        <label>
+          <input type="number" value="2019" />
+          <span>年度選手追加</span>
+        </label>
       </div>
     );
   }

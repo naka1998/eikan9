@@ -3,7 +3,7 @@ class TraningPolicy extends React.Component {
   render() {
     return (
       <div>
-        <textarea name="traPolicy" placeholder="育成方針"></textarea>
+        <textarea placeholder="育戝方針"></textarea>
       </div>
     );
   }

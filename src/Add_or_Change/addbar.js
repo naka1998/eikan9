@@ -10,23 +10,13 @@ class AddButton extends React.Component {
     );
   }
 }
-class SwitchingButton extends React.Component {
-  render() {
-    return (
-      <div>
-        <button className="switchButton">Switch</button>
-      </div>
-    );
-  }
 
-}
 
 class AddBar extends React.Component {
   render() {
     return (
       <footer id="addbar">
         <AddButton />
-        <SwitchingButton />
       </footer>
     );
   }
