@@ -36,7 +36,7 @@ class Filter extends React.Component {
       </label >
     );
   }
-  renderPers(i, props) {
+  renderPers(i) {
     const persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"]
     return (
       < label className="check" >

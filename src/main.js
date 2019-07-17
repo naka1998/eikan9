@@ -22,27 +22,35 @@ class Main extends React.Component {
     this.changePers = this.changePers.bind(this);
   }
   changeYear1(e) {
-    this.setState({ filter: { year1: e.target.value } });
+    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
+    copiedary.year1 = e.target.value;
+    this.setState({
+      filter: copiedary,
+    });
   }
 
   changeYear2(e) {
-    this.setState({ filter: { year2: e.target.value } });
+    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
+    copiedary.year2 = e.target.value;
+    this.setState({
+      filter: copiedary,
+    });
   }
   changePos(e) {
     console.log(this.state.filter.pos);
-    const poscopy = JSON.parse(JSON.stringify(this.state.filter));
+    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
     const posnum = e.target;
-    poscopy.pos[posnum.value] = !poscopy.pos[posnum.value];
+    copiedary.pos[posnum.value] = copiedary.pos[posnum.value];
     this.setState({
-      filter: poscopy,
+      filter: copiedary,
     });
   }
   changePers(e) {
-    const perscopy = JSON.parse(JSON.stringify(this.state.filter));
+    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
     const persnum = e.target;
-    perscopy.pers[persnum.value] = !perscopy.pers[persnum.value];
+    copiedary.pers[persnum.value] = !copiedary.pers[persnum.value];
     this.setState({
-      filter: perscopy,
+      filter: copiedary,
     });
   }
   resetFilterState() {
