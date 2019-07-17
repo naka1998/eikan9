@@ -4,7 +4,7 @@ class Sort extends React.Component {
   render() {
     return (
       <span id="sort">
-        <select>
+        <select onChange={this.props.changeSortState}>
           <option value="0">年度順(昇順)</option>
           <option value="1">年度順(降順)</option>
           <option value="2">ポジション順(昇順)</option>

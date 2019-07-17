@@ -1,6 +1,5 @@
 import React from 'react';
 import "../App.css";
-import "./filter.css";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -28,6 +27,24 @@ class Filter extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
+  renderPos(i) {
+    const posname = ["投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
+    return (
+      < label className="check" >
+        <input type="checkbox" key={i} value={i} onChange={this.props.changePos} />
+        <span className={this.props.filterValue.pos[i] ? "posSpan" : ""}>{posname[i]}</span>
+      </label >
+    );
+  }
+  renderPers(i, props) {
+    const persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"]
+    return (
+      < label className="check" >
+        <input type="checkbox" key={i} value={i} onChange={this.props.changePers} />
+        <span className={this.props.filterValue.pers[i] ? "perSpan" : ""} > {persname[i]}</span>
+      </label >
+    );
+  }
   openModal() {
     this.setState({ modalIsOpen: true });
   }
@@ -38,9 +55,6 @@ class Filter extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
-  }
-  resetState() {
-
   }
   render() {
     return (
@@ -55,86 +69,27 @@ class Filter extends React.Component {
           <div id="filterwrap">
             <div id="yearDiv">
               <label>
-                <input type="tel" value={this.props.filterValue.year1} />
+                <input type="tel" value={this.props.filterValue.year1} onChange={this.props.changeYear1} />
                 <span>年 ～</span>
               </label>
               <label>
-                <input type="tel" value={this.props.filterValue.year2} />
+                <input type="tel" value={this.props.filterValue.year2} onChange={this.props.changeYear2} />
                 <span>年</span>
               </label>
             </div>
 
             <div id="posDiv">
               ポジション：<br />
-              <label className="check">
-                <input type="checkbox" value="1" />
-                <span className="posSpan">投手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="2" />
-                <span className="posSpan">捕手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="3" />
-                <span className="posSpan">一塁手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="4" />
-                <span className="posSpan">二塁手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="5" />
-                <span className="posSpan">三塁手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="6" />
-                <span className="posSpan">遊撃手</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="7" />
-                <span className="posSpan">外野手</span>
-              </label>
+              {[0, 1, 2, 3, 4, 5, 6].map((i) => this.renderPos(i))}
             </div>
-
             <div id="persDiv">
               性格：<br />
-              <label className="check">
-                <input type="checkbox" value="0" />
-                <span className="perSpan">天才肌</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="1" />
-                <span className="perSpan">ごくふつう</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="2" />
-                <span className="perSpan">お調子者</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="3" />
-                <span className="perSpan">やんちゃ</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="4" />
-                <span className="perSpan">クール</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="5" />
-                <span className="perSpan">したたか</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="6" />
-                <span className="perSpan">内気</span>
-              </label>
-              <label className="check">
-                <input type="checkbox" value="7" />
-                <span className="perSpan">熱血漢</span>
-              </label>
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => this.renderPers(i))}
             </div>
           </div>
           <div id="buttonwrap">
-            <button id="okButton">OK</button>
-            <button id="resetButton" onClick={this.resetState()}>Reset</button>
+            <button id="closeButton" onClick={this.closeModal}>CLOSE</button>
+            <button id="resetButton" onClick={this.props.resetFilterState}>Reset</button>
           </div>
         </Modal>
       </div >
