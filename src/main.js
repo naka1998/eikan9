@@ -40,7 +40,7 @@ class Main extends React.Component {
     console.log(this.state.filter.pos);
     const copiedary = JSON.parse(JSON.stringify(this.state.filter));
     const posnum = e.target;
-    copiedary.pos[posnum.value] = copiedary.pos[posnum.value];
+    copiedary.pos[posnum.value] = !copiedary.pos[posnum.value];
     this.setState({
       filter: copiedary,
     });
