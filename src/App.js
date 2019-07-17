@@ -8,12 +8,12 @@ import Change from "./change";
 const Nav = () => (
   <BrowserRouter>
     <div>
-      <Route exact path='/' component={Main} />
-      <Route path='/addsum' component={AddSum} />
-      <Route path='/change' component={Change} />
+      <Route exact path='/eikan9' component={Main} />
+      <Route path='/eikan9/addsum' component={AddSum} />
+      <Route path='/eikan9/change' component={Change} />
       <footer id="navbar">
-        <button className="navcont"><Link to='/'>Main</Link></button>
-        <button className="navcont"><Link to="/addsum">Add</Link></button>
+        <button className="navcont"><Link to='/eikan9'>Main</Link></button>
+        <button className="navcont"><Link to="/eikan9/addsum">Add</Link></button>
       </footer >
     </div >
   </BrowserRouter >
