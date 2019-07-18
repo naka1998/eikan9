@@ -1,4 +1,5 @@
 import React from 'react';
+import data from "./player.json";
 import Sort from "./mainpage/sort";
 import Filter from "./mainpage/filter";
 import PlayerCard from "./mainpage/player";
@@ -15,40 +16,30 @@ class Main extends React.Component {
       },
     };
     this.resetFilterState = this.resetFilterState.bind(this);
-    this.changeYear1 = this.changeYear1.bind(this);
-    this.changeYear2 = this.changeYear2.bind(this);
+    this.changeYear = this.changeYear.bind(this);
     this.changeSortState = this.changeSortState.bind(this);
-    this.changePos = this.changePos.bind(this);
-    this.changePers = this.changePers.bind(this);
+    this.changeState = this.changeState.bind(this);
   }
-  changeYear1(e) {
-    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
-    copiedary.year1 = e.target.value;
-    this.setState({
-      filter: copiedary,
-    });
+  readJson() {
+    //    data = JSON.parse(data);
+    console.log(data);
+    this.setState = { player: data, };
   }
+  writeJson() {
 
-  changeYear2(e) {
+  }
+  changeYear(e) {
     const copiedary = JSON.parse(JSON.stringify(this.state.filter));
-    copiedary.year2 = e.target.value;
+    const name = e.target.name;
+    copiedary[name] = e.target.value;
     this.setState({
       filter: copiedary,
     });
   }
-  changePos(e) {
-    console.log(this.state.filter.pos);
+  changeState(e) {
     const copiedary = JSON.parse(JSON.stringify(this.state.filter));
-    const posnum = e.target;
-    copiedary.pos[posnum.value] = !copiedary.pos[posnum.value];
-    this.setState({
-      filter: copiedary,
-    });
-  }
-  changePers(e) {
-    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
-    const persnum = e.target;
-    copiedary.pers[persnum.value] = !copiedary.pers[persnum.value];
+    const num = e.target;
+    copiedary[num.name][num.value] = !copiedary[num.name][num.value];
     this.setState({
       filter: copiedary,
     });
@@ -60,21 +51,22 @@ class Main extends React.Component {
   changeSortState(e) {
     this.setState({ sort: e.target.value });
   }
+  renderPlayercard() {
+    return (
+      <PlayerCard />
+    );
+  }
   render() {
     return (
       <div>
         <header>
-          <Sort id="sort" sortValue={this.state.sort} changeSortState={this.changeSortState} />
-          <Filter id="filter" filterValue={this.state.filter} resetFilterState={this.resetFilterState} changeYear1={this.changeYear1} changeYear2={this.changeYear2} changePos={this.changePos} changePers={this.changePers} />
+          <Sort id="sort" key={1} sortValue={this.state.sort} changeSortState={this.changeSortState} />
+          <Filter id="filter" key={2} filterValue={this.state.filter} resetFilterState={this.resetFilterState} changeYear={this.changeYear} changeState={this.changeState} />
         </header>
         <div id="wrap">
           <div id="playerwrap">
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
-            <PlayerCard />
+            {this.renderPlayercard
+            }
           </div>
         </div>
       </div>

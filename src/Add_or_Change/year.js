@@ -6,7 +6,7 @@ class Year extends React.Component {
     return (
       <div id="yearForm">
         <label>
-          <input type="number" value="2019" />
+          <input type="number" name="year" />
           <span>年度選手追加</span>
         </label>
       </div>

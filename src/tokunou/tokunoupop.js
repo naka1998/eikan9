@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css';
-import "./tokunou.css";
 import Modal from "react-modal";
 
 const customStyles = {
@@ -17,10 +16,9 @@ const customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 };
-
 class TokunouPop extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modalIsOpen: false,
     };
@@ -31,53 +29,49 @@ class TokunouPop extends React.Component {
   openModal() {
     this.setState({ modalIsOpen: true });
   }
-
   afterOpenModal() {
-
   }
-
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
+  renderPitcher(i) {
+    return (
+      <label>
+        <input type="checkbox" value={i} key={"toku" + i} onChange={this.props.changePitcherState} />
+        <span className={this.props.pitcherIsChecked[i] ? "addTokuSpan" : ""}>{this.props.pitcherTokunou[i]}</span>
+      </label>
+    )
+  }
+  renderFielder(i) {
+    return (
+      <label>
+        <input type="checkbox" value={i} key={"toku" + i} onChange={this.props.changeFielderState} />
+        <span className={this.props.fielderIsChecked[i] ? "addTokuSpan" : ""}>{this.props.fielderTokunou[i]}</span>
+      </label>
+    )
+  }
+
 
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>tokunou</button>
+        <button onClick={this.openModal}>特殊能力</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
           onAfterOpen={this.afterOpenModal}
           style={customStyles}
         >
-          <TokunouCheck />
-          <button>OK</button>
-          <button>Reset</button>
+          <div id="tokunouwrap" >
+            {this.props.isPitcher === true ?
+              this.props.pitcherAry.map((i) => this.renderPitcher(i)) :
+              this.props.fielderAry.map((i) => this.renderFielder(i))}
+          </div>
+          <button onClick={this.closeModal}>OK</button>
+          <button onClick={this.props.resetState}>Reset</button>
         </Modal>
       </div>
     );
   }
 }
-
-class TokunouCheck extends React.Component {
-  render() {
-    return (
-      <div id="tokunouwrap">
-        <label>
-          <input type="checkbox" value="" />
-          <span className="tokuSpan">パワーヒッター</span>
-        </label>
-        <label>
-          <input type="checkbox" value="" />
-          <span className="tokuSpan">アベレージヒッター</span>
-        </label>
-        <label>
-          <input type="checkbox" value="" />
-          <span className="tokuSpan">流し打ち</span>
-        </label>
-      </div>
-    );
-  }
-}
-
 export default TokunouPop;

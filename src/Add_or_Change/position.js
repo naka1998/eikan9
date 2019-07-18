@@ -5,10 +5,10 @@ class Position extends React.Component {
     return (
       <div>
         <div>ポジション</div>
-        <span id="posSpan">
+        <span className="posSpan">
           <MainPos />
-          <SubPos />
-          <SubPos />
+          <SubPos name="サブ1" />
+          <SubPos name="サブ2" />
         </span>
       </div>
     );
@@ -36,7 +36,7 @@ class MainPos extends React.Component {
 class SubPos extends React.Component {
   render() {
     return (
-      <span>サブ2:
+      <span>{this.props.name}:
       <select>
           <option value="0">なし</option>
           <option value="1">投手</option>

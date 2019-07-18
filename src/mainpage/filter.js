@@ -27,24 +27,6 @@ class Filter extends React.Component {
     this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
   }
-  renderPos(i) {
-    const posname = ["投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
-    return (
-      < label className="check" >
-        <input type="checkbox" key={i} value={i} onChange={this.props.changePos} />
-        <span className={this.props.filterValue.pos[i] ? "posSpan" : ""}>{posname[i]}</span>
-      </label >
-    );
-  }
-  renderPers(i) {
-    const persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"]
-    return (
-      < label className="check" >
-        <input type="checkbox" key={i} value={i} onChange={this.props.changePers} />
-        <span className={this.props.filterValue.pers[i] ? "perSpan" : ""} > {persname[i]}</span>
-      </label >
-    );
-  }
   openModal() {
     this.setState({ modalIsOpen: true });
   }
@@ -55,6 +37,25 @@ class Filter extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+    console.log(this.props.filterValue);
+  }
+  renderPos(i) {
+    const posname = ["投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
+    return (
+      < label className="check" key={i} >
+        <input type="checkbox" name="pos" key={i} value={i} onChange={this.props.changeState} />
+        <span className={this.props.filterValue.pos[i] ? "posSpan" : ""}>{posname[i]}</span>
+      </label >
+    );
+  }
+  renderPers(i) {
+    const persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"]
+    return (
+      < label className="check" key={i} >
+        <input type="checkbox" name="pers" key={i} value={i} onChange={this.props.changeState} />
+        <span className={this.props.filterValue.pers[i] ? "perSpan" : ""} > {persname[i]}</span>
+      </label >
+    );
   }
   render() {
     return (
@@ -69,11 +70,11 @@ class Filter extends React.Component {
           <div id="filterwrap">
             <div id="yearDiv">
               <label>
-                <input type="tel" value={this.props.filterValue.year1} onChange={this.props.changeYear1} />
+                <input type="tel" name="year1" value={this.props.filterValue.year1} onChange={this.props.changeYear} />
                 <span>年 ～</span>
               </label>
               <label>
-                <input type="tel" value={this.props.filterValue.year2} onChange={this.props.changeYear2} />
+                <input type="tel" name="year2" value={this.props.filterValue.year2} onChange={this.props.changeYear} />
                 <span>年</span>
               </label>
             </div>

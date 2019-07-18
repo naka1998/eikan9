@@ -154,6 +154,10 @@ input[type="tel"]{
   left: 50%;
   transform : translate(-50%,-50%)
 }
+.addTokuSpan {
+  background-color: green;
+  color: white;
+}
 .switchButton{
   width: 80px;
   height: 36px;
@@ -162,3 +166,37 @@ input[type="tel"]{
   top: 50%;
   transform : translate(-50%,-50%)
 }
+.tokunouUl{
+  margin: 1px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+.tokunouList{
+  margin: 1px;
+  padding: 0;
+  list-style: none;
+  background-color: #CCFFFF;
+  border-radius: 30%;
+  font-size: 12px;
+}
+/*  ここから特能ポップアップのスタイル  */
+#tokunouwrap{
+  width: 100%;
+  border: 1px black dotted;
+  padding: 2px;
+  display: flex;
+  flex-wrap: wrap;
+}
+#tokunouwrap label{
+  border: 1px black dashed;
+  margin: 5px 2px;
+}
+input[type="checkbox"]{
+  display: none;
+}
+.tokuSpan {
+  background-color: red;
+  color: white;
+}
+/*  ここまで  */
