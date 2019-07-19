@@ -51,19 +51,23 @@ header{
   top: 20px;
 }
 .playerCard{
-  width: 100%;
   border: 1px #4689FF solid;
+/*  border-radius: 5%;*/
   display: flex;
   flex-wrap: wrap;
-  margin: 5px 0px;
+  margin-bottom: 10px;
+  padding: 5px;
   background-color: #D9E5FF;
 }
 .playerCard p{
   font-size: 18px;
-  height: 25px;
   border: 1px black solid;
-  margin: 2px 5px;
+  margin: 2px 2px;
   padding: 0px 3px;
+}
+.cardPos{
+  display: flex;
+  flex-wrap: wrap;
 }
 .cardPers,.cardTokunou,.cardPolicy{
   width: 100%;

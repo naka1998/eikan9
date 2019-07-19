@@ -1,28 +1,27 @@
 {
   "player": [
     {
-      "id": "0",
       "year": "2017",
-      "name": "銀次",
-      "pos1": "3",
-      "pos2": "4",
-      "pos3": "0",
-      "pers": "3",
+      "name": "大山",
+      "pos1": "5",
+      "pos2": "3",
+      "pos3": "7",
+      "pers": "0",
       "tokunou": [
         1,
         2,
         4,
         6
       ],
-      "policy": "自由記述"
+      "policy": "自由記述",
+      "isPitcher": false
     },
     {
-      "id": "1",
-      "year": "2013",
-      "name": "大和",
-      "pos1": "3",
-      "pos2": "6",
-      "pos3": "4",
+      "year": "2017",
+      "name": "才木",
+      "pos1": "1",
+      "pos2": "0",
+      "pos3": "0",
       "pers": "4",
       "tokunou": [
         1,
@@ -30,7 +29,56 @@
         4,
         6
       ],
-      "policy": "育成方針"
+      "policy": "育成方針",
+      "isPitcher": true
+    },
+    {
+      "year": "2015",
+      "name": "青柳",
+      "pos1": "1",
+      "pos2": "0",
+      "pos3": "0",
+      "pers": "2",
+      "tokunou": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "policy": "育成方針",
+      "isPitcher": true
+    },
+    {
+      "year": "2015",
+      "name": "高山",
+      "pos1": "7",
+      "pos2": "0",
+      "pos3": "0",
+      "pers": "4",
+      "tokunou": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "policy": "育成方針",
+      "isPitcher": false
+    },
+    {
+      "year": "2009",
+      "name": "原口",
+      "pos1": "3",
+      "pos2": "2",
+      "pos3": "0",
+      "pers": "1",
+      "tokunou": [
+        1,
+        2,
+        4,
+        6
+      ],
+      "policy": "育成方針",
+      "isPitcher": false
     }
   ]
 }
