@@ -6,7 +6,7 @@ class TraningPolicy extends React.Component {
         <textarea
           name="policy"
           value={this.props.value}
-          placeholder="育戝方針"
+          placeholder="育成方針"
           onChange={(e) => this.props.changeState(e, this.props.idNum)}></textarea>
       </div>
     );

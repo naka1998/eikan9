@@ -112,7 +112,7 @@ class Main extends React.Component {
     this.changeState = this.changeState.bind(this);
   }
   readJson() {
-    const playerData;
+    let playerData;
     if (localStorage.getItem("player")) {
       playerData = JSON.parse(localStorage.getItem("player"));
     } else {

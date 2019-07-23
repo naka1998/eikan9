@@ -6,7 +6,7 @@ class Name extends React.Component {
     return (
       <div>
         <label>
-          <span>坝剝</span>
+          <span>名前</span>
           <input
             type="text"
             name="name"
