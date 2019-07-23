@@ -52,7 +52,6 @@ header{
 }
 .playerCard{
   border: 1px #4689FF solid;
-/*  border-radius: 5%;*/
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
@@ -72,8 +71,7 @@ header{
 .cardPers,.cardTokunou,.cardPolicy{
   width: 100%;
 }
-/*ここまでmain*/
-/*  以下、フィルターのスタイル  */
+/*  以下、main > filterのスタイル  */
 #filterwrap{
   width: 100%;
   border: 1px black dotted;
@@ -103,19 +101,14 @@ input[type="tel"]{
 }
 
 .check {
-  border: 1px black dashed;
+  border: 1px black dotted;
   margin: 5px 2px;
-  padding: 2px;
 }
-.posSpan {
-  margin-left: 1em;
+.posCheckedSpan {
   background-color: red;
   color: white;
 }
-.posSpan *{
-  margin-right: 2px;
-}
-.perSpan {
+.perCheckedSpan {
   background-color: blue;
   color: white;
 }
@@ -139,27 +132,58 @@ input[type="tel"]{
   left: 60%;
   transform : translate(-50%);
 }
-/*  ここまでフィルター  */
+/*  ここまでfilter  */
+/*  ここまでmain  */
 
-
+/*  ここからadd */
+#yearForm{
+  margin: 4px auto;
+  font-size: 20px;
+  text-align: center;
+}
+#yearForm input{
+  font-size: 20px;
+}
+/*  ここからaddcard内のスタイル */
 .addcard{
   margin: 4px 0px;
-  padding: 2px;
-  border: 1px black solid;
+  background-color:#c1ea46; 
+  border: 3px #c1ea46 solid;
 }
+.addcard>*{
+  padding: 0 3px;
+}
+.posDiv{
+  background-color:#FFF1B8;
+}
+.posDivChild {
+  margin-left: 1em;
+}
+.posDivChild *{
+  margin-right: 2px;
+}
+.persDiv{
+  background-color: #FDC167;
+}
+.tokunouDiv{
+  background-color:#c1ea46; 
+}
+.policyDiv textarea{
+  width: 98%;
+}
+/*  ここまでaddcard内のスタイル */
 #addbar{
   width: 100%;
   position: fixed;
   bottom: 50px;
-  height: 50px;
-  left: -2px;
+  height: 40px;
   background-color: #999900;
 }
 .addButton{
-  width: 100px;
-  height: 40px;
+  width: 130px;
+  height: 32px;
   color: black;
-  font-size: 30px;
+  font-size: 22px;
   background-color: white;
   text-decoration: none;
   text-align: center;
@@ -168,18 +192,7 @@ input[type="tel"]{
   left: 50%;
   transform : translate(-50%,-50%)
 }
-.addTokuSpan {
-  background-color: green;
-  color: white;
-}
-.switchButton{
-  width: 80px;
-  height: 36px;
-  position: absolute;
-  left: 83%;
-  top: 50%;
-  transform : translate(-50%,-50%)
-}
+/*  ここからtokunouDesc */
 .tokunouUl{
   margin: 1px;
   padding: 0;
@@ -188,13 +201,25 @@ input[type="tel"]{
 }
 .tokunouList{
   margin: 1px;
-  padding: 0;
+  padding: 0 1px;
   list-style: none;
   background-color: #CCFFFF;
-  border-radius: 30%;
+  color: #1E6495;
+  border: 1px #4689FF solid;
+  border-radius: 0.5em;
   font-size: 12px;
 }
-/*  ここから特能ポップアップのスタイル  */
+/*  ここまでtokunouDesc */
+/*  ここからadd < 特能ポップアップのスタイル  */
+.tokunouButton{
+  display: block;
+  border-radius: 1em;
+  width: 100px;
+  margin: 3px auto;
+  border: 1px #4689FF solid;
+  color: #1E6495;
+  background-color: #B9F9F9;
+}
 #tokunouwrap{
   width: 100%;
   border: 1px black dotted;
@@ -202,15 +227,31 @@ input[type="tel"]{
   display: flex;
   flex-wrap: wrap;
 }
-#tokunouwrap label{
-  border: 1px black dashed;
-  margin: 5px 2px;
-}
+
 input[type="checkbox"]{
   display: none;
 }
-.tokuSpan {
-  background-color: red;
-  color: white;
+/*  未選択のボタン  */
+.none{
+  color: #89D6EF;
+  margin: 5px 2px;
+  padding: 0px 2px;
+  border-radius: 0.5em;
+  border: 1px #4689FF solid;
+  background-color: #F0F2F5;
 }
-/*  ここまで  */
+/*  選択済み  */
+.addTokuSpan {
+  margin: 5px 2px;
+  padding: 0px 2px;
+  border-radius: 0.5em;
+  border: 1px #4689FF solid;
+  color: #1E6495;
+  background-color: #B9F9F9;
+}
+#tokunouButtonWrap{
+  width: 100%;
+  height: 32px;
+}
+/*  ここまでadd < tokunouPop  */
+/*  ここまでadd */

@@ -3,9 +3,9 @@ import React from 'react';
 class Position extends React.Component {
   render() {
     return (
-      <div>
+      <div className="posDiv">
         <div>ポジション</div>
-        <span className="posSpan">
+        <div className="posDivChild">
           {[0, 1, 2].map((i) => {
             return (
               <Pos
@@ -15,7 +15,7 @@ class Position extends React.Component {
                 posChange={this.props.posChange} />
             )
           })}
-        </span>
+        </div>
       </div>
     );
   }

@@ -11,11 +11,11 @@ import TraningPolicy from "./Add_or_Change/traningpolicy";
 import Year from "./Add_or_Change/year";
 
 class AddCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      pitcherIsChecked: new Array(this.pitcherNum).fill(false),
-      fielderIsChecked: new Array(this.fielderNum).fill(false),
+      pitcherIsChecked: new Array(this.props.pitcherNum).fill(false),
+      fielderIsChecked: new Array(this.props.fielderNum).fill(false),
     };
     this.playerData = [];
     this.changeFielderState = this.changeFielderState.bind(this);
@@ -23,51 +23,32 @@ class AddCard extends React.Component {
     this.resetState = this.resetState.bind(this);
   }
   //  pitcherの特能を変更
-  changePitcherState(e) {
+  changePitcherState(e, idNum) {
     let copiedAry = this.state.pitcherIsChecked.slice();
     copiedAry[e.target.value] = !copiedAry[e.target.value];
     this.setState({
       pitcherIsChecked: copiedAry,
     });
-    this.sumFunc(copiedAry);
+    this.props.sumFunc(idNum, copiedAry);
   }
   //  fielderの特能を変更
-  changeFielderState(e) {
+  changeFielderState(e, idNum) {
     let copiedAry = this.state.fielderIsChecked.slice();
     copiedAry[e.target.value] = !copiedAry[e.target.value];
     this.setState({
       fielderIsChecked: copiedAry,
     });
-    this.sumFunc(copiedAry);
-  }
-  //  state.tokunouをリセット
-  sumFunc(copiedAry) {
-    let ary = JSON.parse(JSON.stringify(this.props.player));
-    const descAry = this.makeAry(copiedAry);
-    console.log(descAry);
-    this.setState({
-      player: ary,
-    });
+    this.props.sumFunc(idNum, copiedAry);
   }
   //  resetボタン押されたときの処理
   resetState() {
     let ary = JSON.parse(JSON.stringify(this.props.player));
     ary["tokunou"] = "";
     this.setState({
-      pitcherIsChecked: new Array(this.pitcherNum).fill(false),
-      fielderIsChecked: new Array(this.fielderNum).fill(false),
+      pitcherIsChecked: new Array(this.props.pitcherNum).fill(false),
+      fielderIsChecked: new Array(this.props.fielderNum).fill(false),
       player: ary,
     });
-  }
-  //  特能のチェックボックスがチェックされてるかどうか(isChecked)を受け取り、trueのものの番号だけ並べた配列を返す
-  makeAry(isChecked) {
-    let descAry = [];
-    for (let i = 0; i <= isChecked.length; i++) {
-      if (isChecked[i]) {
-        descAry.push(i);
-      }
-    }
-    return descAry;
   }
 
   render() {
@@ -87,21 +68,22 @@ class AddCard extends React.Component {
           idNum={this.props.idNum}
           changeState={this.props.changeState} />
         <TokunouPop
+          idNum={this.props.idNum}
           isPitcher={this.props.player["isPitcher"]}
           pitcherTokunou={this.props.pitcherTokunou}
           pitcherAry={this.props.pitcherAry}
-          pitcherNum={this.pitcherNum}
+          pitcherNum={this.props.pitcherNum}
           pitcherIsChecked={this.state.pitcherIsChecked}
           changePitcherState={this.changePitcherState}
           fielderTokunou={this.props.fielderTokunou}
           fielderAry={this.props.fielderAry}
-          fielderNum={this.fielderNum}
+          fielderNum={this.props.fielderNum}
           fielderIsChecked={this.state.fielderIsChecked}
           changeFielderState={this.changeFielderState}
           resetState={this.resetState}
         />
         <TokunouDesc
-          descAry={this.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
+          descAry={this.props.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
           tokunou={this.props.player["isPitcher"] ? this.props.pitcherTokunou : this.props.fielderTokunou} />
         <TraningPolicy
           value={this.props.player["policy"]}
@@ -118,7 +100,7 @@ class AddSum extends React.Component {
       "year": "",
       "player": [
         {
-          name: "安藤",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -126,7 +108,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "糸原",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -134,7 +116,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "梅野",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -142,7 +124,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "江越",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -150,7 +132,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "大山",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -158,7 +140,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "金本",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -166,7 +148,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "木浪",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -174,7 +156,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "久保田",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -182,7 +164,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "け",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -190,7 +172,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "コンラッド",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -198,7 +180,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "坂本",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -206,7 +188,7 @@ class AddSum extends React.Component {
           isPitcher: true,
         },
         {
-          name: "俊介",
+          name: "",
           pos: ["0", "0", "0"],
           pers: 0,
           tokunou: [],
@@ -304,6 +286,7 @@ class AddSum extends React.Component {
     this.pitcherAry = Array.from(Array(this.pitcherNum).keys());
     this.fielderAry = Array.from(Array(this.fielderNum).keys());
 
+    this.sumFunc = this.sumFunc.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.posChange = this.posChange.bind(this);
     this.changeState = this.changeState.bind(this);
@@ -315,19 +298,43 @@ class AddSum extends React.Component {
         key={`add${i}`}
         idNum={i}
         player={this.state["player"][i]}
+        pitcherNum={this.pitcherNum}
+        fielderNum={this.fielderNum}
         fielderTokunou={this.fielderTokunou}
         pitcherTokunou={this.pitcherTokunou}
         pitcherAry={this.pitcherAry}
         fielderAry={this.fielderAry}
+        makeAry={this.makeAry}
+        sumFunc={this.sumFunc}
         posChange={this.posChange}
         changeState={this.changeState} />
     );
+  }
+  //  特能のチェックボックスがチェックされてるかどうか(isChecked)を受け取り、trueのものの番号だけ並べた配列を返す
+  makeAry(isChecked) {
+    let descAry = [];
+    for (let i = 0; i <= isChecked.length; i++) {
+      if (isChecked[i]) {
+        descAry.push(i);
+      }
+    }
+    return descAry;
   }
   // yearが変更されたときの処理
   changeYear(e) {
     this.setState({
       year: e.target.value,
     })
+  }
+  //  特能changeしたときに呼ばれる
+  sumFunc(idNum, copiedAry) {
+    let ary = JSON.parse(JSON.stringify(this.state.player));
+    const descAry = this.makeAry(copiedAry);
+    ary[idNum]["tokunou"] = descAry;
+    console.log(descAry);
+    this.setState({
+      player: ary,
+    });
   }
   //  position変更されたときの処理
   posChange(e, num, idNum) {
@@ -391,7 +398,9 @@ class AddSum extends React.Component {
         <div id="wrap">
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => this.renderAdcard(i))}
         </div>
-        <AddBar writeJson={this.writeJson} />
+        <AddBar
+          year={this.state.year}
+          writeJson={this.writeJson} />
       </div>
     );
   }

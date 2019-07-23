@@ -10,7 +10,8 @@ class Year extends React.Component {
             type="number"
             name="year"
             value={this.props.value}
-            onChange={this.props.changeYear} required />
+            onChange={this.props.changeYear}
+            placeholder="入力必須" />
           <span>年度選手追加</span>
         </label>
       </div>

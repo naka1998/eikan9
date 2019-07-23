@@ -42,9 +42,9 @@ class Filter extends React.Component {
   renderPos(i) {
     const posname = ["投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
     return (
-      < label className="check" key={i} >
+      <label className="check" key={i} >
         <input type="checkbox" name="pos" key={i} value={i} onChange={this.props.changeState} />
-        <span className={this.props.filterValue.pos[i] ? "posSpan" : ""}>{posname[i]}</span>
+        <span className={this.props.filterValue.pos[i] ? "posCheckedSpan" : ""}>{posname[i]}</span>
       </label >
     );
   }
@@ -52,8 +52,13 @@ class Filter extends React.Component {
     const persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"]
     return (
       < label className="check" key={i} >
-        <input type="checkbox" name="pers" key={i} value={i} onChange={this.props.changeState} />
-        <span className={this.props.filterValue.pers[i] ? "perSpan" : ""} > {persname[i]}</span>
+        <input
+          type="checkbox"
+          name="pers"
+          key={i}
+          value={i}
+          onChange={this.props.changeState} />
+        <span className={this.props.filterValue.pers[i] ? "perCheckedSpan" : ""} > {persname[i]}</span>
       </label >
     );
   }

@@ -2,7 +2,7 @@ import React from 'react';
 class TraningPolicy extends React.Component {
   render() {
     return (
-      <div>
+      <div className="policyDiv">
         <textarea
           name="policy"
           value={this.props.value}

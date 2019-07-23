@@ -38,8 +38,8 @@ class TokunouPop extends React.Component {
     return (
       <label>
         <input type="checkbox" value={i} key={"toku" + i}
-          onChange={this.props.changePitcherState} />
-        <span className={this.props.pitcherIsChecked[i] ? "addTokuSpan" : ""}>{this.props.pitcherTokunou[i]}</span>
+          onChange={(e) => this.props.changePitcherState(e, this.props.idNum)} />
+        <span className={this.props.pitcherIsChecked[i] ? "addTokuSpan" : "none"}>{this.props.pitcherTokunou[i]}</span>
       </label>
     )
   }
@@ -47,16 +47,16 @@ class TokunouPop extends React.Component {
     return (
       <label>
         <input type="checkbox" value={i} key={"toku" + i}
-          onChange={this.props.changeFielderState} />
-        <span className={this.props.fielderIsChecked[i] ? "addTokuSpan" : ""}>{this.props.fielderTokunou[i]}</span>
+          onChange={(e) => this.props.changeFielderState(e, this.props.idNum)} />
+        <span className={this.props.fielderIsChecked[i] ? "addTokuSpan" : "none"}>{this.props.fielderTokunou[i]}</span>
       </label>
     )
   }
 
   render() {
     return (
-      <div>
-        <button onClick={this.openModal}>特殊能力</button>
+      <div className="tokunouDiv">
+        <button className="tokunouButton" onClick={this.openModal}>特殊能力</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -68,8 +68,10 @@ class TokunouPop extends React.Component {
               this.props.pitcherAry.map((i) => this.renderPitcher(i)) :
               this.props.fielderAry.map((i) => this.renderFielder(i))}
           </div>
-          <button onClick={this.closeModal}>OK</button>
-          <button onClick={this.props.resetState}>Reset</button>
+          <div id="tokunouButtonWrap">
+            <button id="closeButton" onClick={this.closeModal}>OK</button>
+            <button id="resetButton" onClick={this.props.resetState}>Reset</button>
+          </div>
         </Modal>
       </div>
     );

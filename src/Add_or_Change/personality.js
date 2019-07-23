@@ -3,7 +3,7 @@ import React from 'react';
 class Personality extends React.Component {
   render() {
     return (
-      <div>
+      <div className="persDiv">
         <label htmlFor="personality">性格</label>
         <select
           name="pers"
