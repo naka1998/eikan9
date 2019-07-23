@@ -158,6 +158,11 @@ input[type="tel"]{
 .addButton{
   width: 100px;
   height: 40px;
+  color: black;
+  font-size: 30px;
+  background-color: white;
+  text-decoration: none;
+  text-align: center;
   position: absolute;
   top: 50%;
   left: 50%;

@@ -5,7 +5,10 @@ class Personality extends React.Component {
     return (
       <div>
         <label htmlFor="personality">性格</label>
-        <select name="pers" value={this.props.value} onChange={(e) => this.props.changeState(e)}>
+        <select
+          name="pers"
+          value={this.props.value}
+          onChange={(e) => this.props.changeState(e, this.props.idNum)}>
           <option value="0">天才肌	</option>
           <option value="1">ごくふつう</option>
           <option value="2">お調子者</option>

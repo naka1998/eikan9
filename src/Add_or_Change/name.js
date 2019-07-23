@@ -7,7 +7,11 @@ class Name extends React.Component {
       <div>
         <label>
           <span>坝剝</span>
-          <input type="text" name="name" value={this.props.value} onChange={(e) => this.props.changeState(e)} />
+          <input
+            type="text"
+            name="name"
+            value={this.props.value}
+            onChange={(e) => this.props.changeState(e, this.props.idNum)} />
         </label>
       </div>
     );

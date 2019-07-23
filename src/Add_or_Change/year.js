@@ -6,7 +6,11 @@ class Year extends React.Component {
     return (
       <div id="yearForm">
         <label>
-          <input type="number" name="year" />
+          <input
+            type="number"
+            name="year"
+            value={this.props.value}
+            onChange={this.props.changeYear} required />
           <span>年度選手追加</span>
         </label>
       </div>

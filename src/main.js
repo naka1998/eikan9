@@ -2,7 +2,6 @@ import React from 'react';
 import Sort from "./mainpage/sort";
 import Filter from "./mainpage/filter";
 import PlayerCard from "./mainpage/player";
-
 class Main extends React.Component {
   constructor() {
     super();
@@ -101,10 +100,11 @@ class Main extends React.Component {
       filter: {
         year1: "", year2: "",
         pos: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false },
-        pers: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, }
+        pers: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, },
       },
     };
     this.playerData = this.readJson();
+    this.playerNum = Object.keys(this.playerData).length;
 
     this.resetFilterState = this.resetFilterState.bind(this);
     this.changeYear = this.changeYear.bind(this);
@@ -112,98 +112,13 @@ class Main extends React.Component {
     this.changeState = this.changeState.bind(this);
   }
   readJson() {
-    const data = {
-      "player": [
-        {
-          "year": "2017",
-          "name": "大山",
-          "pos1": "5",
-          "pos2": "3",
-          "pos3": "7",
-          "pers": "0",
-          "tokunou": [
-            1,
-            2,
-            4,
-            6
-          ],
-          "policy": "自由記述",
-          "isPitcher": false
-        },
-        {
-          "year": "2017",
-          "name": "才木",
-          "pos1": "1",
-          "pos2": "0",
-          "pos3": "0",
-          "pers": "4",
-          "tokunou": [
-            1,
-            2,
-            4,
-            6
-          ],
-          "policy": "育成方針",
-          "isPitcher": true
-        },
-        {
-          "year": "2015",
-          "name": "青柳",
-          "pos1": "1",
-          "pos2": "0",
-          "pos3": "0",
-          "pers": "2",
-          "tokunou": [
-            1,
-            2,
-            4,
-            6
-          ],
-          "policy": "育成方針",
-          "isPitcher": true
-        },
-        {
-          "year": "2015",
-          "name": "高山",
-          "pos1": "7",
-          "pos2": "0",
-          "pos3": "0",
-          "pers": "4",
-          "tokunou": [
-            1,
-            2,
-            4,
-            6
-          ],
-          "policy": "育成方針",
-          "isPitcher": false
-        },
-        {
-          "year": "2009",
-          "name": "原口",
-          "pos1": "3",
-          "pos2": "2",
-          "pos3": "0",
-          "pers": "1",
-          "tokunou": [
-            1,
-            2,
-            4,
-            6
-          ],
-          "policy": "育成方針",
-          "isPitcher": false
-        }
-      ]
+    const playerData;
+    if (localStorage.getItem("player")) {
+      playerData = JSON.parse(localStorage.getItem("player"));
+    } else {
+      playerData = {};
     }
-
-    for (let i = 0; i < Object.keys(data["player"]).length; i++) {
-      localStorage.setItem(i, JSON.stringify(data["player"][i]));
-    }
-    let playerData = [];
-    for (let j = 0; j < Object.keys(data["player"]).length; j++) {
-      playerData.push(JSON.parse(localStorage.getItem(j)));
-    }
+    console.log(playerData);
     return playerData;
   }
   changeYear(e) {
@@ -230,9 +145,9 @@ class Main extends React.Component {
     this.setState({ sort: e.target.value });
   }
   renderPlayercard(i) {
-    const pos1 = this.posname[this.playerData[i]["pos1"]];
-    const pos2 = this.posname[this.playerData[i]["pos2"]];
-    const pos3 = this.posname[this.playerData[i]["pos3"]];
+    const pos1 = this.posname[this.playerData[i]["pos"][0]];
+    const pos2 = this.posname[this.playerData[i]["pos"][1]];
+    const pos3 = this.posname[this.playerData[i]["pos"][2]];
     const pers = this.persname[this.playerData[i]["pers"]];
     const persAbility = this.playerData[i]["isPitcher"] ? this.persPitcher[this.playerData[i]["pers"]] : this.persFielder[this.playerData[i]["pers"]];
     const tokunou = this.playerData[i]["isPitcher"] ?
@@ -253,6 +168,7 @@ class Main extends React.Component {
     );
   }
   render() {
+    const ary = Array.from(Array(this.playerNum).keys())
     return (
       <div>
         <header>
@@ -261,7 +177,7 @@ class Main extends React.Component {
         </header>
         <div id="wrap">
           <div id="playerwrap">
-            {this.playerData.map((value, index) => this.renderPlayercard(index))}
+            {ary.map((i) => this.renderPlayercard(i))}
           </div>
         </div>
       </div>

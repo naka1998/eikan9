@@ -13,11 +13,6 @@ import Year from "./Add_or_Change/year";
 class AddCard extends React.Component {
   constructor() {
     super();
-    this.pitcherNum = 32;
-    this.fielderNum = 48;
-    this.pitcherAry = Array.from(Array(this.pitcherNum).keys());
-    this.fielderAry = Array.from(Array(this.fielderNum).keys());
-
     this.state = {
       pitcherIsChecked: new Array(this.pitcherNum).fill(false),
       fielderIsChecked: new Array(this.fielderNum).fill(false),
@@ -26,8 +21,6 @@ class AddCard extends React.Component {
     this.changeFielderState = this.changeFielderState.bind(this);
     this.changePitcherState = this.changePitcherState.bind(this);
     this.resetState = this.resetState.bind(this);
-    this.posChange = this.posChange.bind(this);
-    this.changeState = this.changeState.bind(this);
   }
   //  pitcherの特能を変更
   changePitcherState(e) {
@@ -56,7 +49,7 @@ class AddCard extends React.Component {
       player: ary,
     });
   }
-  //  resetボタン押されたときの処理  
+  //  resetボタン押されたときの処理
   resetState() {
     let ary = JSON.parse(JSON.stringify(this.props.player));
     ary["tokunou"] = "";
@@ -66,50 +59,7 @@ class AddCard extends React.Component {
       player: ary,
     });
   }
-  //  position変更されたときの処理
-  posChange(e, num) {
-    let ary = JSON.parse(JSON.stringify(this.props.player));
-    ary["pos"][num] = e.target.value;
-    ary["isPitcher"] = ary["pos"][0] === "1";
-    this.setState({
-      player: ary,
-    })
-  }
-  //  position以外(name, personality, training policy)のstateが変更されたときの処理
-  changeState(e) {
-    let ary = JSON.parse(JSON.stringify(this.props.player));
-    ary[e.target.name] = e.target.value;
-    this.setState({
-      player: ary,
-    })
-  }
-
-  render() {
-    return (
-      <div className="addcard" >
-        <Name changeName={this.props.changeName} value={this.props.player["name"]} changeState={this.changeState} />
-        <Position value={this.props.player["pos"]} posChange={this.posChange} />
-        <Personality value={this.props.player["pers"]} changeState={this.changeState} />
-        <TokunouPop isPitcher={this.props.player["isPitcher"]}
-          pitcherTokunou={this.props.pitcherTokunou}
-          pitcherAry={this.pitcherAry}
-          pitcherNum={this.pitcherNum}
-          pitcherIsChecked={this.state.pitcherIsChecked}
-          changePitcherState={this.changePitcherState}
-          fielderTokunou={this.props.fielderTokunou}
-          fielderAry={this.fielderAry}
-          fielderNum={this.fielderNum}
-          fielderIsChecked={this.state.fielderIsChecked}
-          changeFielderState={this.changeFielderState}
-          resetState={this.resetState}
-        />
-        <TokunouDesc
-          descAry={this.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
-          tokunou={this.props.player["isPitcher"] ? this.props.pitcherTokunou : this.props.fielderTokunou} />
-        <TraningPolicy value={this.props.player["policy"]} changeState={this.changeState} />
-      </div >
-    );
-  }
+  //  特能のチェックボックスがチェックされてるかどうか(isChecked)を受け取り、trueのものの番号だけ並べた配列を返す
   makeAry(isChecked) {
     let descAry = [];
     for (let i = 0; i <= isChecked.length; i++) {
@@ -119,8 +69,48 @@ class AddCard extends React.Component {
     }
     return descAry;
   }
-}
 
+  render() {
+    return (
+      <div className="addcard" >
+        <Name
+          changeName={this.props.changeName}
+          value={this.props.player["name"]}
+          idNum={this.props.idNum}
+          changeState={this.props.changeState} />
+        <Position
+          value={this.props.player["pos"]}
+          idNum={this.props.idNum}
+          posChange={this.props.posChange} />
+        <Personality
+          value={this.props.player["pers"]}
+          idNum={this.props.idNum}
+          changeState={this.props.changeState} />
+        <TokunouPop
+          isPitcher={this.props.player["isPitcher"]}
+          pitcherTokunou={this.props.pitcherTokunou}
+          pitcherAry={this.props.pitcherAry}
+          pitcherNum={this.pitcherNum}
+          pitcherIsChecked={this.state.pitcherIsChecked}
+          changePitcherState={this.changePitcherState}
+          fielderTokunou={this.props.fielderTokunou}
+          fielderAry={this.props.fielderAry}
+          fielderNum={this.fielderNum}
+          fielderIsChecked={this.state.fielderIsChecked}
+          changeFielderState={this.changeFielderState}
+          resetState={this.resetState}
+        />
+        <TokunouDesc
+          descAry={this.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
+          tokunou={this.props.player["isPitcher"] ? this.props.pitcherTokunou : this.props.fielderTokunou} />
+        <TraningPolicy
+          value={this.props.player["policy"]}
+          idNum={this.props.idNum}
+          changeState={this.props.changeState} />
+      </div >
+    );
+  }
+}
 class AddSum extends React.Component {
   constructor() {
     super();
@@ -129,97 +119,97 @@ class AddSum extends React.Component {
       "player": [
         {
           name: "安藤",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "糸原",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "梅野",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "江越",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "大山",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "金本",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "木浪",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "久保田",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "け",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "コンラッド",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "坂本",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
         {
           name: "俊介",
-          pos: [0, 0, 0],
+          pos: ["0", "0", "0"],
           pers: 0,
-          tokunou: "",
+          tokunou: [],
           policy: "",
           isPitcher: true,
         },
@@ -309,21 +299,95 @@ class AddSum extends React.Component {
       "国際大会◯",
       "回またぎ◯",
     ];
+    this.pitcherNum = 32;
+    this.fielderNum = 48;
+    this.pitcherAry = Array.from(Array(this.pitcherNum).keys());
+    this.fielderAry = Array.from(Array(this.fielderNum).keys());
+
+    this.changeYear = this.changeYear.bind(this);
+    this.posChange = this.posChange.bind(this);
+    this.changeState = this.changeState.bind(this);
+    this.writeJson = this.writeJson.bind(this);
   }
   renderAdcard(i) {
-    console.log(this.state["player"][i]);
-
     return (
-      <AddCard key={`add${i}`} player={this.state["player"][i]} fielderTokunou={this.fielderTokunou} pitcherTokunou={this.pitcherTokunou} />
+      <AddCard
+        key={`add${i}`}
+        idNum={i}
+        player={this.state["player"][i]}
+        fielderTokunou={this.fielderTokunou}
+        pitcherTokunou={this.pitcherTokunou}
+        pitcherAry={this.pitcherAry}
+        fielderAry={this.fielderAry}
+        posChange={this.posChange}
+        changeState={this.changeState} />
     );
   }
+  // yearが変更されたときの処理
+  changeYear(e) {
+    this.setState({
+      year: e.target.value,
+    })
+  }
+  //  position変更されたときの処理
+  posChange(e, num, idNum) {
+    let ary = JSON.parse(JSON.stringify(this.state.player));
+    ary[idNum]["pos"][num] = e.target.value;
+    ary[idNum]["isPitcher"] = ary[idNum]["pos"][0] === "1";
+    this.setState({
+      player: ary,
+    })
+  }
+  //  position以外(name, personality, training policy)のstateが変更されたときの処理
+  changeState(e, idNum) {
+    let ary = JSON.parse(JSON.stringify(this.state.player));
+    ary[idNum][e.target.name] = e.target.value;
+    this.setState({
+      player: ary,
+    })
+  }
+  //  ボタン押されたときに、localstorageに保存する処理
   writeJson() {
+    let allData;
+    if (localStorage.getItem("player")) {
+      allData = JSON.parse(localStorage.getItem("player"));
+    } else {
+      allData = {};
+      alert("first");
+    }
+    console.log(allData);
+    const num = Object.keys(allData).length;
+    console.log(num);
+    let ary;
+    let j = 0;
+    for (let i = 0; i <= 11; i++) {
+      ary = {};
+      // 名前が未入力(="")ORメインポジションが未入力(=0)
+      if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
+        console.log(`${i} is false`);
+      } else {
+        ary["year"] = this.state.year;
+        ary["name"] = this.state.player[i]["name"];
+        ary["pos"] = this.state.player[i]["pos"];
+        ary["pers"] = this.state.player[i]["pers"];
+        ary["tokunou"] = this.state.player[i]["tokunou"];
+        ary["policy"] = this.state.player[i]["policy"];
+        ary["isPitcher"] = this.state.player[i]["isPitcher"];
+        console.log(ary);
+        allData[num + j] = ary;
+        j++;
+      }
+    }
+    console.log(JSON.stringify(allData));
+    localStorage.setItem("player", JSON.stringify(allData));
 
   }
   render() {
     return (
       <div>
-        <Year />
+        <Year
+          value={this.state.year}
+          changeYear={this.changeYear} />
         <div id="wrap">
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => this.renderAdcard(i))}
         </div>

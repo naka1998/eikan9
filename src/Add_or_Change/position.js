@@ -8,7 +8,11 @@ class Position extends React.Component {
         <span className="posSpan">
           {[0, 1, 2].map((i) => {
             return (
-              <Pos value={this.props.value} num={i} posChange={this.props.posChange} />
+              <Pos
+                value={this.props.value}
+                num={i}
+                idNum={this.props.idNum}
+                posChange={this.props.posChange} />
             )
           })}
         </span>
@@ -21,7 +25,9 @@ class Pos extends React.Component {
   render() {
     return (
       <span>{this.props.num === 0 ? "メイン" : "サブ" + this.props.num}
-        <select value={this.props.value[this.props.num]} onChange={(e) => this.props.posChange(e, this.props.num)}>
+        <select
+          value={this.props.value[this.props.num]}
+          onChange={(e) => this.props.posChange(e, this.props.num, this.props.idNum)}>
           <option value="0">なし</option>
           <option value="1">投手</option>
           <option value="2">捕手</option>
