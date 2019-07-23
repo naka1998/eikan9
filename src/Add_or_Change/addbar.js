@@ -1,22 +1,11 @@
 import React from "react";
 import "../App.css";
 
-class AddButton extends React.Component {
-  render() {
-    return (
-      <span>
-        <button className="addButton">Add</button>
-      </span>
-    );
-  }
-}
-
-
 class AddBar extends React.Component {
   render() {
     return (
       <footer id="addbar">
-        <AddButton />
+        <input type="submit" className="addButton" onClick={this.props.writeJson} value="追加" />
       </footer>
     );
   }

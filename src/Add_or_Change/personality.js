@@ -4,8 +4,8 @@ class Personality extends React.Component {
   render() {
     return (
       <div>
-        <label htmlFor="personality">性格:</label>
-        <select name="personality">
+        <label htmlFor="personality">性格</label>
+        <select name="pers" value={this.props.value} onChange={(e) => this.props.changeState(e)}>
           <option value="0">天才肌	</option>
           <option value="1">ごくふつう</option>
           <option value="2">お調子者</option>
@@ -15,7 +15,7 @@ class Personality extends React.Component {
           <option value="6">内気</option>
           <option value="7">熱血漢</option>
         </select>
-      </div>
+      </div >
     );
   }
 

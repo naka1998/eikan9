@@ -37,7 +37,8 @@ class TokunouPop extends React.Component {
   renderPitcher(i) {
     return (
       <label>
-        <input type="checkbox" value={i} key={"toku" + i} onChange={this.props.changePitcherState} />
+        <input type="checkbox" value={i} key={"toku" + i}
+          onChange={this.props.changePitcherState} />
         <span className={this.props.pitcherIsChecked[i] ? "addTokuSpan" : ""}>{this.props.pitcherTokunou[i]}</span>
       </label>
     )
@@ -45,12 +46,12 @@ class TokunouPop extends React.Component {
   renderFielder(i) {
     return (
       <label>
-        <input type="checkbox" value={i} key={"toku" + i} onChange={this.props.changeFielderState} />
+        <input type="checkbox" value={i} key={"toku" + i}
+          onChange={this.props.changeFielderState} />
         <span className={this.props.fielderIsChecked[i] ? "addTokuSpan" : ""}>{this.props.fielderTokunou[i]}</span>
       </label>
     )
   }
-
 
   render() {
     return (
@@ -74,4 +75,5 @@ class TokunouPop extends React.Component {
     );
   }
 }
+
 export default TokunouPop;

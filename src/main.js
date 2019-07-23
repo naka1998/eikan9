@@ -1,5 +1,4 @@
 import React from 'react';
-import data from "./player.json";
 import Sort from "./mainpage/sort";
 import Filter from "./mainpage/filter";
 import PlayerCard from "./mainpage/player";
@@ -105,33 +104,122 @@ class Main extends React.Component {
         pers: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, }
       },
     };
+    this.playerData = this.readJson();
+
     this.resetFilterState = this.resetFilterState.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.changeSortState = this.changeSortState.bind(this);
     this.changeState = this.changeState.bind(this);
   }
   readJson() {
-    //    data = JSON.parse(data);
-    console.log(data["player"][0]);
+    const data = {
+      "player": [
+        {
+          "year": "2017",
+          "name": "大山",
+          "pos1": "5",
+          "pos2": "3",
+          "pos3": "7",
+          "pers": "0",
+          "tokunou": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "policy": "自由記述",
+          "isPitcher": false
+        },
+        {
+          "year": "2017",
+          "name": "才木",
+          "pos1": "1",
+          "pos2": "0",
+          "pos3": "0",
+          "pers": "4",
+          "tokunou": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "policy": "育成方針",
+          "isPitcher": true
+        },
+        {
+          "year": "2015",
+          "name": "青柳",
+          "pos1": "1",
+          "pos2": "0",
+          "pos3": "0",
+          "pers": "2",
+          "tokunou": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "policy": "育成方針",
+          "isPitcher": true
+        },
+        {
+          "year": "2015",
+          "name": "高山",
+          "pos1": "7",
+          "pos2": "0",
+          "pos3": "0",
+          "pers": "4",
+          "tokunou": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "policy": "育成方針",
+          "isPitcher": false
+        },
+        {
+          "year": "2009",
+          "name": "原口",
+          "pos1": "3",
+          "pos2": "2",
+          "pos3": "0",
+          "pers": "1",
+          "tokunou": [
+            1,
+            2,
+            4,
+            6
+          ],
+          "policy": "育成方針",
+          "isPitcher": false
+        }
+      ]
+    }
 
-  }
-  writeJson() {
-
+    for (let i = 0; i < Object.keys(data["player"]).length; i++) {
+      localStorage.setItem(i, JSON.stringify(data["player"][i]));
+    }
+    let playerData = [];
+    for (let j = 0; j < Object.keys(data["player"]).length; j++) {
+      playerData.push(JSON.parse(localStorage.getItem(j)));
+    }
+    return playerData;
   }
   changeYear(e) {
-    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
+    const copiedAry = JSON.parse(JSON.stringify(this.state.filter));
     const name = e.target.name;
-    copiedary[name] = e.target.value;
+    copiedAry[name] = e.target.value;
     this.setState({
-      filter: copiedary,
+      filter: copiedAry,
     });
   }
   changeState(e) {
-    const copiedary = JSON.parse(JSON.stringify(this.state.filter));
+    const copiedAry = JSON.parse(JSON.stringify(this.state.filter));
     const num = e.target;
-    copiedary[num.name][num.value] = !copiedary[num.name][num.value];
+    copiedAry[num.name][num.value] = !copiedAry[num.name][num.value];
     this.setState({
-      filter: copiedary,
+      filter: copiedAry,
     });
   }
   resetFilterState() {
@@ -142,31 +230,29 @@ class Main extends React.Component {
     this.setState({ sort: e.target.value });
   }
   renderPlayercard(i) {
-    console.log(data["player"][i]["year"]);
-    const pos1 = this.posname[data["player"][i]["pos1"]];
-    const pos2 = this.posname[data["player"][i]["pos2"]];
-    const pos3 = this.posname[data["player"][i]["pos3"]];
-    const pers = this.persname[data["player"][i]["pers"]];
-    const persAbility = data["player"][i]["isPitcher"] ? this.persPitcher[data["player"][i]["pers"]] : this.persFielder[data["player"][i]["pers"]];
-    const tokunou = data["player"][i]["isPitcher"] ?
-      data["player"][i]["tokunou"].map((i) => this.pitcherTokunou[i]) + "" :
-      data["player"][i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
+    const pos1 = this.posname[this.playerData[i]["pos1"]];
+    const pos2 = this.posname[this.playerData[i]["pos2"]];
+    const pos3 = this.posname[this.playerData[i]["pos3"]];
+    const pers = this.persname[this.playerData[i]["pers"]];
+    const persAbility = this.playerData[i]["isPitcher"] ? this.persPitcher[this.playerData[i]["pers"]] : this.persFielder[this.playerData[i]["pers"]];
+    const tokunou = this.playerData[i]["isPitcher"] ?
+      this.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + "" :
+      this.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
     return (
       <PlayerCard
-        year={data["player"][i]["year"]}
-        name={data["player"][i]["name"]}
+        year={this.playerData[i]["year"]}
+        name={this.playerData[i]["name"]}
         pos1={pos1}
         pos2={pos2}
         pos3={pos3}
         pers={pers}
         persAbility={persAbility}
         tokunou={tokunou}
-        policy={data["player"][i]["policy"]}
+        policy={this.playerData[i]["policy"]}
       />
     );
   }
   render() {
-    this.readJson();
     return (
       <div>
         <header>
@@ -175,7 +261,7 @@ class Main extends React.Component {
         </header>
         <div id="wrap">
           <div id="playerwrap">
-            {data["player"].map((value, index) => this.renderPlayercard(index))}
+            {this.playerData.map((value, index) => this.renderPlayercard(index))}
           </div>
         </div>
       </div>

@@ -108,8 +108,12 @@ input[type="tel"]{
   padding: 2px;
 }
 .posSpan {
+  margin-left: 1em;
   background-color: red;
   color: white;
+}
+.posSpan *{
+  margin-right: 2px;
 }
 .perSpan {
   background-color: blue;
@@ -140,6 +144,7 @@ input[type="tel"]{
 
 .addcard{
   margin: 4px 0px;
+  padding: 2px;
   border: 1px black solid;
 }
 #addbar{
