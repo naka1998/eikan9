@@ -2,13 +2,13 @@ import React from 'react';
 class TraningPolicy extends React.Component {
   render() {
     return (
-      <div className="policyDiv">
-        <textarea
-          name="policy"
-          value={this.props.value}
-          placeholder="育成方針"
-          onChange={(e) => this.props.changeState(e, this.props.idNum)}></textarea>
-      </div>
+      <textarea
+        name="policy"
+        className="policyForm"
+        value={this.props.value}
+        placeholder="育成方針"
+        onChange={(e) => this.props.changeState(e, this.props.idNum)}></textarea>
+
     );
   }
 

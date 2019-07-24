@@ -67,28 +67,31 @@ class AddCard extends React.Component {
           value={this.props.player["pers"]}
           idNum={this.props.idNum}
           changeState={this.props.changeState} />
-        <TokunouPop
-          idNum={this.props.idNum}
-          isPitcher={this.props.player["isPitcher"]}
-          pitcherTokunou={this.props.pitcherTokunou}
-          pitcherAry={this.props.pitcherAry}
-          pitcherNum={this.props.pitcherNum}
-          pitcherIsChecked={this.state.pitcherIsChecked}
-          changePitcherState={this.changePitcherState}
-          fielderTokunou={this.props.fielderTokunou}
-          fielderAry={this.props.fielderAry}
-          fielderNum={this.props.fielderNum}
-          fielderIsChecked={this.state.fielderIsChecked}
-          changeFielderState={this.changeFielderState}
-          resetState={this.resetState}
-        />
+        <div className="forFlex">
+          <TokunouPop
+            idNum={this.props.idNum}
+            isPitcher={this.props.player["isPitcher"]}
+            pitcherTokunou={this.props.pitcherTokunou}
+            pitcherAry={this.props.pitcherAry}
+            pitcherNum={this.props.pitcherNum}
+            pitcherIsChecked={this.state.pitcherIsChecked}
+            changePitcherState={this.changePitcherState}
+            fielderTokunou={this.props.fielderTokunou}
+            fielderAry={this.props.fielderAry}
+            fielderNum={this.props.fielderNum}
+            fielderIsChecked={this.state.fielderIsChecked}
+            changeFielderState={this.changeFielderState}
+            resetState={this.resetState}
+          />
+          <TraningPolicy
+            value={this.props.player["policy"]}
+            idNum={this.props.idNum}
+            changeState={this.props.changeState} />
+        </div>
         <TokunouDesc
           descAry={this.props.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
           tokunou={this.props.player["isPitcher"] ? this.props.pitcherTokunou : this.props.fielderTokunou} />
-        <TraningPolicy
-          value={this.props.player["policy"]}
-          idNum={this.props.idNum}
-          changeState={this.props.changeState} />
+
       </div >
     );
   }

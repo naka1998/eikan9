@@ -1,11 +1,17 @@
 body{
   background-color: #BEF3E2;
 }
+#titleDiv{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform : translate(-50%,-50%);
+  font: xx-large 'Yu Gothic';
+}
 #wrap{
-  width: 90%;
-  border: 1px black solid;
+  width: 95%;
   margin: 5px auto 90px auto;
-  padding: 10px;
+  padding: 6px;
 }
 #navbar{
   width: 100%;
@@ -64,29 +70,33 @@ header{
   right: 5%;
 }
 
-#playerwrap{
-  top: 20px;
-}
 .playerCard{
   border-radius:1em; 
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
   padding: 7px;
-  background-color: #e9f8fb;
+  background-color: white;
 }
 .playerCard p{
   font-size: 18px;
-  border: 1px black solid;
   margin: 2px 2px;
   padding: 0px 3px;
+}
+.yearAndName{
+  width: 100%;
+  display: flex;
+  border-bottom: 1px #8b9496 solid;
 }
 .cardPos{
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  border-bottom: 1px #8b9496 solid;
 }
 .cardPers,.cardTokunou,.cardPolicy{
   width: 100%;
+  border-bottom: 1px #8b9496 solid;
 }
 /*  以下、main > filterのスタイル  */
 #filterwrap{
@@ -154,12 +164,17 @@ input[type="tel"]{
 
 /*  ここからadd */
 #yearForm{
-  margin: 4px auto;
   font-size: 20px;
+  height: 40px;
   text-align: center;
+  background-color: #e9fbf5;
+}
+#yearForm *{
+  margin-top:5px; 
+  font-size: 20px;
 }
 #yearForm input{
-  font-size: 20px;
+  width: 4.5em;
 }
 /*  ここからaddcard内のスタイル */
 .addcard{
@@ -169,27 +184,23 @@ input[type="tel"]{
   padding: 3px;
 }
 .addcard>*{
-  padding: 0 3px;
+  padding: 2px 3px 8px 3px;
 }
-/*
-.posDiv{
-  background-color:#FFF1B8;
-}*/
+
 .posDivChild {
   margin-left: 1em;
 }
 .posDivChild *{
   margin-right: 2px;
 }
-/*
-.persDiv{
-  background-color: #FDC167;
+.forFlex{
+  display: flex;
+  width: 100%;
+  padding: 1px;
 }
-.tokunouDiv{
-  background-color:#c1ea46; 
-}*/
-.policyDiv textarea{
-  width: 98%;
+.policyForm{
+  margin-left: 10px;
+  width:98%;
 }
 /*  ここまでaddcard内のスタイル */
 #addbar{
