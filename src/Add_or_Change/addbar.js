@@ -5,7 +5,7 @@ class AddBar extends React.Component {
   render() {
     return (
       <footer id="addbar">
-        <a href="/eikan9"
+        <a href="/eikan9/main"
           className="addButton"
           onClick={this.props.writeJson}
         >

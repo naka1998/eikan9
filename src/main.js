@@ -110,6 +110,7 @@ class Main extends React.Component {
     this.changeYear = this.changeYear.bind(this);
     this.changeSortState = this.changeSortState.bind(this);
     this.changeState = this.changeState.bind(this);
+    this.allReset = this.allReset.bind(this);
   }
   readJson() {
     let playerData;
@@ -143,6 +144,15 @@ class Main extends React.Component {
   }
   changeSortState(e) {
     this.setState({ sort: e.target.value });
+  }
+  allReset() {
+    const result = window.confirm("全選手のデータがクリアされます\nよろしいですか？");
+    if (result) {
+      localStorage.clear();
+      this.playerData = {};
+      this.playerNum = 0;
+      window.location.reload();
+    }
   }
   renderPlayercard(i) {
     const pos1 = this.posname[this.playerData[i]["pos"][0]];
@@ -179,6 +189,7 @@ class Main extends React.Component {
           <div id="playerwrap">
             {ary.map((i) => this.renderPlayercard(i))}
           </div>
+          <button onClick={this.allReset}>選手リセット</button>
         </div>
       </div>
     );
