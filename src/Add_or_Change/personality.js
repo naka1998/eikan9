@@ -1,14 +1,13 @@
 import React from 'react';
 
-class Personality extends React.Component {
-  render() {
-    return (
-      <div className="persDiv">
-        <label htmlFor="personality">性格</label>
-        <select
+const Personality = (props) => {
+  return (
+    <div className="persDiv">
+      <label>性格
+      <select
           name="pers"
-          value={this.props.value}
-          onChange={(e) => this.props.changeState(e, this.props.idNum)}>
+          value={props.value}
+          onChange={(e) => props.changeState(e, props.idNum)}>
           <option value="0">天才肌	</option>
           <option value="1">ごくふつう</option>
           <option value="2">お調子者</option>
@@ -18,10 +17,9 @@ class Personality extends React.Component {
           <option value="6">内気</option>
           <option value="7">熱血漢</option>
         </select>
-      </div >
-    );
-  }
-
+      </label>
+    </div >
+  )
 }
 
 export default Personality;

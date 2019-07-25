@@ -2,6 +2,7 @@ import React from 'react';
 import Sort from "./mainpage/sort";
 import Filter from "./mainpage/filter";
 import PlayerCard from "./mainpage/player";
+
 class Main extends React.Component {
   constructor() {
     super();
@@ -12,16 +13,19 @@ class Main extends React.Component {
     this.persFielder =
       ["全体的(めっちゃ伸びる)", "全体的(平均的)", "走力, 肩力", "弾道, パワー", "ミート, 守備位置変更, 打席変更, 打撃フォーム", "守備力, エラー回避", "エラー回避", "パワー"];
     this.fielderTokunou = [
-      "チャンス",
+      "チャンス4",
+      "チャンス5",
       "対左投手",
-      "キャッチャー",
-      "盗塁",
-      "走塁",
-      "送球",
-      "秋男",
-      "夏男",
-      "春男",
-      "ケガしにくさ",
+      "キャッチャー◯",
+      "キャッチャー◎",
+      "盗塁4",
+      "盗塁5",
+      "走塁4",
+      "走塁5",
+      "送球4",
+      "送球5",
+      "ケガしにくさ4",
+      "ケガしにくさ5",
       "アベレージヒッター",
       "パワーヒッター",
       "プルヒッター",
@@ -51,21 +55,20 @@ class Main extends React.Component {
       "満塁男",
       "ムード◯",
       "レーザービーム",
-      "△△キラー",
       "ダメ押し",
       "インコースヒッター",
       "アウトコースヒッター",
       "かく乱",
       "悪球打ち",
-      "国際大会◯",
       "対変化球◯",
       "ホーム突入",
     ];
     this.pitcherTokunou = [
-      "対ピンチ",
+      "対ピンチ4",
       "対左打者",
       "打たれ強さ",
-      "ノビ",
+      "ノビ4",
+      "ノビ5",
       "クイック",
       "回復",
       "威圧感",
@@ -88,7 +91,6 @@ class Main extends React.Component {
       "逃げ球",
       "低め◯",
       "リリース◯",
-      "△△キラー",
       "球速安定",
       "ポーカーフェイス",
       "力配分",
@@ -112,16 +114,19 @@ class Main extends React.Component {
     this.changeState = this.changeState.bind(this);
     this.allReset = this.allReset.bind(this);
   }
+  //  localStorage読んで、playerDataに入れる
   readJson() {
     let playerData;
     if (localStorage.getItem("player")) {
+      //  localStorageに何か入っていたときの処理
       playerData = JSON.parse(localStorage.getItem("player"));
     } else {
+      //  localStorageに何も入っていなかったときの処理
       playerData = {};
     }
-    console.log(playerData);
     return playerData;
   }
+  //  filterのyearが変更されたときの処理
   changeYear(e) {
     const copiedAry = JSON.parse(JSON.stringify(this.state.filter));
     const name = e.target.name;
@@ -130,6 +135,7 @@ class Main extends React.Component {
       filter: copiedAry,
     });
   }
+  //  filterのyear以外が変更されたときの処理
   changeState(e) {
     const copiedAry = JSON.parse(JSON.stringify(this.state.filter));
     const num = e.target;
@@ -138,19 +144,24 @@ class Main extends React.Component {
       filter: copiedAry,
     });
   }
+  //  filterのresetボタンが押されたときの処理
   resetFilterState() {
     const resetState = { year1: "", year2: "", pos: [], pers: [] };
     this.setState({ filter: resetState, });
   }
+  //  sortが変更されたときの処理
   changeSortState(e) {
     this.setState({ sort: e.target.value });
   }
+  //  選手リセットボタンが押されたときの処理
   allReset() {
     const result = window.confirm("全選手のデータがクリアされます\nよろしいですか？");
     if (result) {
+      //  確認ダイアログ出して、OK押されるとlocalStorageがクリアされる
       localStorage.clear();
       this.playerData = {};
       this.playerNum = 0;
+      //  renderされなかったから強制的に再読込
       window.location.reload();
     }
   }
@@ -159,10 +170,12 @@ class Main extends React.Component {
     const pos2 = this.posname[this.playerData[i]["pos"][1]];
     const pos3 = this.posname[this.playerData[i]["pos"][2]];
     const pers = this.persname[this.playerData[i]["pers"]];
-    const persAbility = this.playerData[i]["isPitcher"] ? this.persPitcher[this.playerData[i]["pers"]] : this.persFielder[this.playerData[i]["pers"]];
-    const tokunou = this.playerData[i]["isPitcher"] ?
-      this.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + "" :
-      this.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
+    const persAbility = this.playerData[i]["isPitcher"]
+      ? this.persPitcher[this.playerData[i]["pers"]]
+      : this.persFielder[this.playerData[i]["pers"]];
+    const tokunou = this.playerData[i]["isPitcher"]
+      ? this.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + ""
+      : this.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
     return (
       <PlayerCard
         year={this.playerData[i]["year"]}
@@ -182,8 +195,18 @@ class Main extends React.Component {
     return (
       <div>
         <header>
-          <Sort id="sort" key={1} sortValue={this.state.sort} changeSortState={this.changeSortState} />
-          <Filter id="filter" key={2} filterValue={this.state.filter} resetFilterState={this.resetFilterState} changeYear={this.changeYear} changeState={this.changeState} />
+          <Sort
+            id="sort"
+            key="sort"
+            sortValue={this.state.sort}
+            changeSortState={this.changeSortState} />
+          <Filter
+            id="filter"
+            key="filter"
+            filterValue={this.state.filter}
+            resetFilterState={this.resetFilterState}
+            changeYear={this.changeYear}
+            changeState={this.changeState} />
         </header>
         <div id="wrap">
           <div id="playerwrap">

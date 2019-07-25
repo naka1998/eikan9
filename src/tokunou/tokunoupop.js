@@ -2,6 +2,7 @@ import React from 'react';
 import '../App.css';
 import Modal from "react-modal";
 
+//  modalはポップアップ？のやつ
 const customStyles = {
   overlay: {
     zIndex: "100",
@@ -16,6 +17,7 @@ const customStyles = {
     transform: 'translate(-50%, -50%)'
   }
 };
+
 class TokunouPop extends React.Component {
   constructor(props) {
     super(props);
@@ -34,21 +36,38 @@ class TokunouPop extends React.Component {
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
+  //  特能は全部チェックボックスで作る
   renderPitcher(i) {
     return (
       <label>
-        <input type="checkbox" value={i} key={"toku" + i}
+        <input
+          type="checkbox"
+          value={i}
+          key={"toku" + i}
           onChange={(e) => this.props.changePitcherState(e, this.props.idNum)} />
-        <span className={this.props.pitcherIsChecked[i] ? "addTokuSpan" : "none"}>{this.props.pitcherTokunou[i]}</span>
+        <span
+          className={this.props.pitcherIsChecked[i]
+            ? "addTokuSpan"
+            : "none"}>
+          {this.props.pitcherTokunou[i]}
+        </span>
       </label>
     )
   }
   renderFielder(i) {
     return (
       <label>
-        <input type="checkbox" value={i} key={"toku" + i}
+        <input
+          type="checkbox"
+          value={i}
+          key={"toku" + i}
           onChange={(e) => this.props.changeFielderState(e, this.props.idNum)} />
-        <span className={this.props.fielderIsChecked[i] ? "addTokuSpan" : "none"}>{this.props.fielderTokunou[i]}</span>
+        <span
+          className={this.props.fielderIsChecked[i]
+            ? "addTokuSpan"
+            : "none"}>
+          {this.props.fielderTokunou[i]}
+        </span>
       </label>
     )
   }
@@ -57,6 +76,7 @@ class TokunouPop extends React.Component {
     return (
       <div className="tokunouDiv">
         <button className="tokunouButton" onClick={this.openModal}>特殊能力</button>
+        {/* ↑<button>押すと、↓<Modal>の中身が表示されるよ */}
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
@@ -64,13 +84,17 @@ class TokunouPop extends React.Component {
           style={customStyles}
         >
           <div id="tokunouwrap" >
-            {this.props.isPitcher === true ?
-              this.props.pitcherAry.map((i) => this.renderPitcher(i)) :
-              this.props.fielderAry.map((i) => this.renderFielder(i))}
+            {this.props.isPitcher === true
+              ? this.props.pitcherAry.map((i) => this.renderPitcher(i))
+              : this.props.fielderAry.map((i) => this.renderFielder(i))}
           </div>
           <div id="tokunouButtonWrap">
-            <button id="closeButton" onClick={this.closeModal}>OK</button>
-            <button id="resetButton" onClick={this.props.resetState}>Reset</button>
+            <button
+              id="closeButton"
+              onClick={this.closeModal}>OK</button>
+            <button
+              id="resetButton"
+              onClick={this.props.resetState}>Reset</button>
           </div>
         </Modal>
       </div>

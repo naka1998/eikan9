@@ -1,19 +1,23 @@
 import React from "react";
 import "../App.css";
 
-class AddBar extends React.Component {
-  render() {
-    return (
-      <footer id="addbar">
-        <a href="/eikan9/main"
-          className="addButton"
-          onClick={this.props.writeJson}
-        >
-          {this.props.year ? "追加" : "年度未入力"}
-        </a>
-      </footer>
-    );
-  }
+/*
+下部に固定される「追加」ボタン
+何らかの理由でaタグにしてるけど、ホントはbuttonタグのほうがいい。
+onClickで入力データのチェック→localStorageに追加ってしたくても、
+勝手に画面遷移される
+*/
+const AddBar = (props) => {
+  return (
+    <footer id="addbar">
+      <a
+        href="/eikan9/main"
+        className="addButton"
+        onClick={props.writeJson}>
+        {props.year ? "追加" : "年度未入力"}
+      </a>
+    </footer>
+  )
 }
 
 export default AddBar;

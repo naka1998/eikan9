@@ -21,6 +21,7 @@ const Nav = () => (
     </div >
   </BrowserRouter >
 )
+
 class App extends React.Component {
   render() {
     return (

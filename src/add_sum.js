@@ -24,11 +24,14 @@ class AddCard extends React.Component {
   }
   //  pitcherの特能を変更
   changePitcherState(e, idNum) {
+    //  stateを変更するすべてのメソッドにおいて、一度コピーを取り→コピーを変更し→setStateする
     let copiedAry = this.state.pitcherIsChecked.slice();
+    // ture<->false反転
     copiedAry[e.target.value] = !copiedAry[e.target.value];
     this.setState({
       pitcherIsChecked: copiedAry,
     });
+    //  isChecked(true, flase)をtoukou[]数字の配列に変換
     this.props.sumFunc(idNum, copiedAry);
   }
   //  fielderの特能を変更
@@ -38,12 +41,13 @@ class AddCard extends React.Component {
     this.setState({
       fielderIsChecked: copiedAry,
     });
+    //  isChecked(true, flase)をtoukou[]数字の配列に変換
     this.props.sumFunc(idNum, copiedAry);
   }
-  //  resetボタン押されたときの処理
+  //  resetボタン押されたとき→stateを初期状態にする
   resetState() {
     let ary = JSON.parse(JSON.stringify(this.props.player));
-    ary["tokunou"] = "";
+    ary["tokunou"] = [];
     this.setState({
       pitcherIsChecked: new Array(this.props.pitcherNum).fill(false),
       fielderIsChecked: new Array(this.props.fielderNum).fill(false),
@@ -89,128 +93,40 @@ class AddCard extends React.Component {
             changeState={this.props.changeState} />
         </div>
         <TokunouDesc
-          descAry={this.props.makeAry(this.props.player.isPitcher ? this.state.pitcherIsChecked : this.state.fielderIsChecked)}
-          tokunou={this.props.player["isPitcher"] ? this.props.pitcherTokunou : this.props.fielderTokunou} />
-
+          descAry={this.props.makeAry(this.props.player.isPitcher
+            ? this.state.pitcherIsChecked
+            : this.state.fielderIsChecked)}
+          tokunou={this.props.player["isPitcher"]
+            ? this.props.pitcherTokunou
+            : this.props.fielderTokunou} />
       </div >
     );
   }
 }
+
 class AddSum extends React.Component {
   constructor() {
     super();
     this.state = {
       "year": "",
       "player": [
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
-        {
-          name: "",
-          pos: ["0", "0", "0"],
-          pers: 0,
-          tokunou: [],
-          policy: "",
-          isPitcher: true,
-        },
+        { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, },
       ]
     }
     this.fielderTokunou = [
-      "チャンス",
+      "チャンス4",
+      "チャンス5",
       "対左投手",
-      "キャッチャー",
-      "盗塁",
-      "走塁",
-      "送球",
-      "秋男",
-      "夏男",
-      "春男",
-      "ケガしにくさ",
+      "キャッチャー◯",
+      "キャッチャー◎",
+      "盗塁4",
+      "盗塁5",
+      "走塁4",
+      "走塁5",
+      "送球4",
+      "送球5",
+      "ケガしにくさ4",
+      "ケガしにくさ5",
       "アベレージヒッター",
       "パワーヒッター",
       "プルヒッター",
@@ -240,21 +156,20 @@ class AddSum extends React.Component {
       "満塁男",
       "ムード◯",
       "レーザービーム",
-      "△△キラー",
       "ダメ押し",
       "インコースヒッター",
       "アウトコースヒッター",
       "かく乱",
       "悪球打ち",
-      "国際大会◯",
       "対変化球◯",
       "ホーム突入",
     ];
     this.pitcherTokunou = [
-      "対ピンチ",
+      "対ピンチ4",
       "対左打者",
       "打たれ強さ",
-      "ノビ",
+      "ノビ4",
+      "ノビ5",
       "クイック",
       "回復",
       "威圧感",
@@ -277,15 +192,14 @@ class AddSum extends React.Component {
       "逃げ球",
       "低め◯",
       "リリース◯",
-      "△△キラー",
       "球速安定",
       "ポーカーフェイス",
       "力配分",
       "国際大会◯",
       "回またぎ◯",
     ];
-    this.pitcherNum = 32;
-    this.fielderNum = 48;
+    this.pitcherNum = this.pitcherTokunou.length;
+    this.fielderNum = this.fielderTokunou.length;
     this.pitcherAry = Array.from(Array(this.pitcherNum).keys());
     this.fielderAry = Array.from(Array(this.fielderNum).keys());
 
@@ -330,11 +244,11 @@ class AddSum extends React.Component {
     })
   }
   //  特能changeしたときに呼ばれる
+  //  stateのtokunouを更新
   sumFunc(idNum, copiedAry) {
     let ary = JSON.parse(JSON.stringify(this.state.player));
     const descAry = this.makeAry(copiedAry);
     ary[idNum]["tokunou"] = descAry;
-    console.log(descAry);
     this.setState({
       player: ary,
     });
@@ -359,23 +273,22 @@ class AddSum extends React.Component {
   //  ボタン押されたときに、localstorageに保存する処理
   writeJson() {
     let allData;
+    //  localStorageになにか入ったていればそれをコピー、なければ空の配列を入れる
     if (localStorage.getItem("player")) {
       allData = JSON.parse(localStorage.getItem("player"));
     } else {
       allData = {};
-      alert("first");
     }
-    console.log(allData);
     const num = Object.keys(allData).length;
-    console.log(num);
     let ary;
     let j = 0;
     for (let i = 0; i <= 11; i++) {
       ary = {};
-      // 名前が未入力(="")ORメインポジションが未入力(=0)
       if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
+        // 名前が未入力(="")ORメインポジションが未入力(=0)のときの処理
         console.log(`${i} is false`);
       } else {
+        //  保存する選手のデータをaryに入れてく
         ary["year"] = this.state.year;
         ary["name"] = this.state.player[i]["name"];
         ary["pos"] = this.state.player[i]["pos"];
@@ -383,14 +296,12 @@ class AddSum extends React.Component {
         ary["tokunou"] = this.state.player[i]["tokunou"];
         ary["policy"] = this.state.player[i]["policy"];
         ary["isPitcher"] = this.state.player[i]["isPitcher"];
-        console.log(ary);
+        //  保存済みのデータの(末尾+1)番目に追加
         allData[num + j] = ary;
         j++;
       }
     }
-    console.log(JSON.stringify(allData));
     localStorage.setItem("player", JSON.stringify(allData));
-
   }
   render() {
     return (
