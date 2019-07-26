@@ -104,15 +104,25 @@ class Main extends React.Component {
         pos: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false },
         pers: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, },
       },
-    };
-    this.playerData = this.readJson();
-    this.playerNum = Object.keys(this.playerData).length;
+      playerData: this.readJson(),
+      playerNumAry: [],
+    }
 
+    this.readJson = this.readJson.bind(this);
     this.resetFilterState = this.resetFilterState.bind(this);
     this.changeYear = this.changeYear.bind(this);
     this.changeSortState = this.changeSortState.bind(this);
     this.changeState = this.changeState.bind(this);
     this.allReset = this.allReset.bind(this);
+  }
+  //  初期化？できる
+  //  constractor()の後に呼ばれるらしい
+  componentWillMount() {
+    const playerNum = Object.keys(this.state.playerData).length;
+    this.setState({
+      playerNum: playerNum,
+      playerNumAry: Array.from(Array(playerNum).keys()),
+    });
   }
   //  localStorage読んで、playerDataに入れる
   readJson() {
@@ -152,6 +162,76 @@ class Main extends React.Component {
   //  sortが変更されたときの処理
   changeSortState(e) {
     this.setState({ sort: e.target.value });
+    let exArray = [];
+    let sortedAry = [];
+    switch (e.target.value) {
+      case "0":
+        exArray = this.makeAryYear();
+        //  year が文字列のため、ascとdescが逆に働くっぽい
+        sortedAry = this.sortByAsc(exArray);
+        break;
+      case "1":
+        exArray = this.makeAryYear();
+        sortedAry = this.sortByDesc(exArray);
+        break;
+      case "2":
+        exArray = this.makeAryPos();
+        sortedAry = this.sortByAsc(exArray);
+        break;
+      case "3":
+        exArray = this.makeAryPos();
+        sortedAry = this.sortByDesc(exArray);
+        break;
+      default:
+        break;
+    }
+    sortedAry = this.extractAry(sortedAry);
+    this.setState({
+      playerNumAry: sortedAry,
+    })
+  }
+  //  [i,year]の配列を返す
+  makeAryYear() {
+    let playerArray = JSON.parse(JSON.stringify(this.state.playerData));
+    let exArray = [];
+    for (let i = 0; i < this.state.playerNum; i++) {
+      let ary = [];
+      ary = [i, playerArray[i]["year"]];
+      exArray.push(ary);
+    }
+    return exArray;
+  }
+  makeAryPos() {
+    let playerArray = JSON.parse(JSON.stringify(this.state.playerData));
+    let exArray = [];
+    for (let i = 0; i < this.state.playerNum; i++) {
+      let ary = [];
+      ary = [i, playerArray[i]["pos"][0]];
+      exArray.push(ary);
+    }
+    return exArray;
+  }
+  //  昇順(asc)に並び替える関数
+  sortByAsc(ary) {
+    ary.sort((a, b) => {
+      return a[1] - b[1];
+    });
+    return ary;
+  }
+  //  降順(desc)に並び替える関数
+  sortByDesc(ary) {
+    ary.sort((a, b) => {
+      return b[1] - a[1];
+    });
+    return ary;
+  }
+  //  配列[[1,a],[21,b],[3,c]...]の[1,21,3...]を抽出する
+  extractAry(ary) {
+    let outputAry = [];
+    for (let i = 0; i < ary.length; i++) {
+      outputAry.push(ary[i][0]);
+    }
+    return outputAry;
   }
   //  選手リセットボタンが押されたときの処理
   allReset() {
@@ -159,39 +239,41 @@ class Main extends React.Component {
     if (result) {
       //  確認ダイアログ出して、OK押されるとlocalStorageがクリアされる
       localStorage.clear();
-      this.playerData = {};
-      this.playerNum = 0;
+      this.setState({
+        playerData: {},
+        playerNum: 0,
+        playerNumAry: [],
+      });
       //  renderされなかったから強制的に再読込
       window.location.reload();
     }
   }
   renderPlayercard(i) {
-    const pos1 = this.posname[this.playerData[i]["pos"][0]];
-    const pos2 = this.posname[this.playerData[i]["pos"][1]];
-    const pos3 = this.posname[this.playerData[i]["pos"][2]];
-    const pers = this.persname[this.playerData[i]["pers"]];
-    const persAbility = this.playerData[i]["isPitcher"]
-      ? this.persPitcher[this.playerData[i]["pers"]]
-      : this.persFielder[this.playerData[i]["pers"]];
-    const tokunou = this.playerData[i]["isPitcher"]
-      ? this.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + ""
-      : this.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
+    const pos1 = this.posname[this.state.playerData[i]["pos"][0]];
+    const pos2 = this.posname[this.state.playerData[i]["pos"][1]];
+    const pos3 = this.posname[this.state.playerData[i]["pos"][2]];
+    const pers = this.persname[this.state.playerData[i]["pers"]];
+    const persAbility = this.state.playerData[i]["isPitcher"]
+      ? this.persPitcher[this.state.playerData[i]["pers"]]
+      : this.persFielder[this.state.playerData[i]["pers"]];
+    const tokunou = this.state.playerData[i]["isPitcher"]
+      ? this.state.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + ""
+      : this.state.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
     return (
       <PlayerCard
-        year={this.playerData[i]["year"]}
-        name={this.playerData[i]["name"]}
+        year={this.state.playerData[i]["year"]}
+        name={this.state.playerData[i]["name"]}
         pos1={pos1}
         pos2={pos2}
         pos3={pos3}
         pers={pers}
         persAbility={persAbility}
         tokunou={tokunou}
-        policy={this.playerData[i]["policy"]}
+        policy={this.state.playerData[i]["policy"]}
       />
     );
   }
   render() {
-    const ary = Array.from(Array(this.playerNum).keys())
     return (
       <div>
         <header>
@@ -210,11 +292,11 @@ class Main extends React.Component {
         </header>
         <div id="wrap">
           <div id="playerwrap">
-            {ary.map((i) => this.renderPlayercard(i))}
+            {this.state.playerNumAry.map((i) => this.renderPlayercard(i))}
           </div>
           <button onClick={this.allReset}>選手リセット</button>
         </div>
-      </div>
+      </div >
     );
   }
 }

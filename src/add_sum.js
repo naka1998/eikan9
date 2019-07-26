@@ -108,7 +108,7 @@ class AddSum extends React.Component {
   constructor() {
     super();
     this.state = {
-      "year": "",
+      "year": null,
       "player": [
         { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, },
       ]
