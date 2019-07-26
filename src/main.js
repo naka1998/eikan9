@@ -100,9 +100,9 @@ class Main extends React.Component {
     this.state = {
       sort: 0,
       filter: {
-        year1: "", year2: "",
-        pos: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false },
-        pers: { 0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, },
+        year1: 0, year2: 9999,
+        pos: Array(8).fill(false),
+        pers: Array(8).fill(false),
       },
       playerData: this.readJson(),
       playerNumAry: [],
@@ -136,6 +136,8 @@ class Main extends React.Component {
     }
     return playerData;
   }
+
+  //  ここからfilterの処理
   //  filterのyearが変更されたときの処理
   changeYear(e) {
     const copiedAry = JSON.parse(JSON.stringify(this.state.filter));
@@ -154,32 +156,85 @@ class Main extends React.Component {
       filter: copiedAry,
     });
   }
+
+  // changeYearしたときに呼ばれる
+  filterByYear(inputAry, value) {
+    let outputAry = [];
+    for (let i = 0; i < inputAry.length; i++) {
+      if (inputAry[i][1] === value) {
+        outputAry.push(inputAry[i][0]);
+      }
+    }
+    return outputAry;
+  }
+
   //  filterのresetボタンが押されたときの処理
   resetFilterState() {
-    const resetState = { year1: "", year2: "", pos: [], pers: [] };
+    const resetState = {
+      year1: 0, year2: 9999,
+      pos: Array(8).fill(false),
+      pers: Array(8).fill(false),
+    };
     this.setState({ filter: resetState, });
   }
+
+  //  モーダルが閉じたときに、filterのstateを反映する
+  reflectFilter = () => {
+    //  aryに表示する選手のnumberを入れていく
+    let ary = [];
+    //  年に対して絞り込み
+    const posAry = this.makeAry(this.state.filter.pos);
+    const persAry = this.makeAry(this.state.filter.pers);
+    console.log("pos" + posAry);
+    console.log("pers" + persAry);
+
+    for (let i = 0; i < this.state.playerNum; i++) {
+      const yearData = this.state.playerData[i].year;
+      const posData = this.state.playerData[i].pos;
+      const persData = this.state.playerData[i].pers;
+      if (yearData >= this.state.filter.year1 && yearData <= this.state.filter.year2) {
+        //  ポジションに対して絞り込み
+        if (posAry.length === 0
+          || posAry.indexOf(Number(posData[0])) >= 0
+          || posAry.indexOf(Number(posData[1])) >= 0
+          || posAry.indexOf(Number(posData[2])) >= 0) {
+          //  性格に対して絞り込み
+          if (persAry.length === 0
+            || persAry.indexOf(Number(persData)) >= 0) {
+            //  すべての条件に合致すれば、aryに追加する
+            ary.push(i);
+          }
+        }
+      }
+    }
+    console.log(ary);
+    this.setState({ playerNumAry: ary, });
+  }
+  //  ここまでfilterの処理
+
   //  sortが変更されたときの処理
   changeSortState(e) {
     this.setState({ sort: e.target.value });
     let exArray = [];
     let sortedAry = [];
+    const playerArray = JSON.parse(JSON.stringify(this.state.playerData));
+    const playerNumAry = this.state.playerNumAry.slice();
     switch (e.target.value) {
       case "0":
-        exArray = this.makeAryYear();
+        exArray = this.makeAryYear(playerArray, playerNumAry);
         //  year が文字列のため、ascとdescが逆に働くっぽい
         sortedAry = this.sortByAsc(exArray);
         break;
       case "1":
-        exArray = this.makeAryYear();
+        exArray = this.makeAryYear(playerArray, playerNumAry);
         sortedAry = this.sortByDesc(exArray);
         break;
       case "2":
-        exArray = this.makeAryPos();
+        exArray = this.makeAryPos(playerArray, playerNumAry);
         sortedAry = this.sortByAsc(exArray);
         break;
       case "3":
-        exArray = this.makeAryPos();
+        exArray = this.makeAryPos(playerArray, playerNumAry);
         sortedAry = this.sortByDesc(exArray);
         break;
       default:
@@ -191,22 +246,36 @@ class Main extends React.Component {
     })
   }
   //  [i,year]の配列を返す
-  makeAryYear() {
-    let playerArray = JSON.parse(JSON.stringify(this.state.playerData));
+  makeAryYear(playerArray, playerNumAry) {
     let exArray = [];
     for (let i = 0; i < this.state.playerNum; i++) {
-      let ary = [];
-      ary = [i, playerArray[i]["year"]];
-      exArray.push(ary);
+      if (playerNumAry.indexOf(i) >= 0) {
+        let ary = [];
+        ary = [i, playerArray[i]["year"]];
+        exArray.push(ary);
+      }
     }
+    console.log(exArray);
     return exArray;
   }
-  makeAryPos() {
-    let playerArray = JSON.parse(JSON.stringify(this.state.playerData));
+  //  [i,pos[0]]の配列を返す
+  makeAryPos(playerArray, playerNumAry) {
+    let exArray = [];
+    for (let i = 0; i < this.state.playerNum; i++) {
+      if (playerNumAry.indexOf(i) >= 0) {
+        let ary = [];
+        ary = [i, playerArray[i]["pos"][0], playerArray[i]["pos"][1], playerArray[i]["pos"][2]];
+        exArray.push(ary);
+      }
+    }
+    console.log(exArray);
+    return exArray;
+  }
+  makeAryPers(playerArray) {
     let exArray = [];
     for (let i = 0; i < this.state.playerNum; i++) {
       let ary = [];
-      ary = [i, playerArray[i]["pos"][0]];
+      ary = [i, playerArray[i]["pers"][0]];
       exArray.push(ary);
     }
     return exArray;
@@ -231,7 +300,18 @@ class Main extends React.Component {
     for (let i = 0; i < ary.length; i++) {
       outputAry.push(ary[i][0]);
     }
+    //  
     return outputAry;
+  }
+  //  boolean型の配列をtrueのindexを並べた配列に変換する
+  makeAry(istrue) {
+    let descAry = [];
+    for (let i = 0; i <= istrue.length; i++) {
+      if (istrue[i]) {
+        descAry.push(i);
+      }
+    }
+    return descAry;
   }
   //  選手リセットボタンが押されたときの処理
   allReset() {
@@ -244,8 +324,8 @@ class Main extends React.Component {
         playerNum: 0,
         playerNumAry: [],
       });
-      //  renderされなかったから強制的に再読込
-      window.location.reload();
+      //  renderされなかったら強制的に再読込
+      //  window.location.reload();
     }
   }
   renderPlayercard(i) {
@@ -257,8 +337,8 @@ class Main extends React.Component {
       ? this.persPitcher[this.state.playerData[i]["pers"]]
       : this.persFielder[this.state.playerData[i]["pers"]];
     const tokunou = this.state.playerData[i]["isPitcher"]
-      ? this.state.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i]) + ""
-      : this.state.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]) + "";
+      ? this.state.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i])
+      : this.state.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]);
     return (
       <PlayerCard
         year={this.state.playerData[i]["year"]}
@@ -286,6 +366,7 @@ class Main extends React.Component {
             id="filter"
             key="filter"
             filterValue={this.state.filter}
+            reflectFilter={this.reflectFilter}
             resetFilterState={this.resetFilterState}
             changeYear={this.changeYear}
             changeState={this.changeState} />

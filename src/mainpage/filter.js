@@ -37,13 +37,18 @@ class Filter extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
-    console.log(this.props.filterValue);
+    this.props.reflectFilter();
   }
   renderPos(i) {
-    const posname = ["投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
+    const posname = ["", "投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"]
     return (
       <label className="check" key={i} >
-        <input type="checkbox" name="pos" key={i} value={i} onChange={this.props.changeState} />
+        <input
+          type="checkbox"
+          name="pos"
+          key={"pos" + i}
+          value={i}
+          onChange={this.props.changeState} />
         <span className={this.props.filterValue.pos[i] ? "posCheckedSpan" : ""}>{posname[i]}</span>
       </label >
     );
@@ -86,7 +91,7 @@ class Filter extends React.Component {
 
             <div id="posDiv">
               ポジション：<br />
-              {[0, 1, 2, 3, 4, 5, 6].map((i) => this.renderPos(i))}
+              {[1, 2, 3, 4, 5, 6, 7].map((i) => this.renderPos(i))}
             </div>
             <div id="persDiv">
               性格：<br />

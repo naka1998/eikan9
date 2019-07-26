@@ -289,7 +289,7 @@ class AddSum extends React.Component {
         console.log(`${i} is false`);
       } else {
         //  保存する選手のデータをaryに入れてく
-        ary["year"] = this.state.year;
+        ary["year"] = Number(this.state.year);
         ary["name"] = this.state.player[i]["name"];
         ary["pos"] = this.state.player[i]["pos"];
         ary["pers"] = this.state.player[i]["pers"];
