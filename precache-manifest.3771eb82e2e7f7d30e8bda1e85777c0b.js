@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0ee20e4b05dc5069bc481640be1d5327",
+    "revision": "9f489199739fd7346f1bb31780c0822e",
     "url": "/eikan9/index.html"
   },
   {
-    "revision": "a77905e1960358929f35",
+    "revision": "8abf3485b972869f80f8",
     "url": "/eikan9/static/css/main.55be921e.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/eikan9/static/js/2.678cb693.chunk.js"
   },
   {
-    "revision": "a77905e1960358929f35",
-    "url": "/eikan9/static/js/main.f9db74ae.chunk.js"
+    "revision": "8abf3485b972869f80f8",
+    "url": "/eikan9/static/js/main.ea21e699.chunk.js"
   },
   {
     "revision": "32330de9f91dfc25bd67",
