@@ -3,7 +3,7 @@ import React from 'react';
 const Personality = (props) => {
   return (
     <div className="persDiv">
-      <label>性格
+      <label>性格:
       <select
           name="pers"
           value={props.value}

@@ -5,7 +5,7 @@ const Name = (props) => {
   return (
     < div className="nameDiv" >
       <label>
-        <span>名前</span>
+        <span>名前:</span>
         <input
           type="text"
           name="name"

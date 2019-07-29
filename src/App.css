@@ -1,16 +1,25 @@
+html
+{
+    font-family: '游ゴシック体', 'Yu Gothic', YuGothic, sans-serif;
+    font-weight: 500;
+}
 body{
   background-color: #BEF3E2;
+}
+/*  モーダルの背面スクロールを禁止する  */
+.ReactModal__Body--open {
+  position: fixed;
 }
 #titleDiv{
   position: absolute;
   top: 50%;
   left: 50%;
   transform : translate(-50%,-50%);
-  font: xx-large 'Yu Gothic';
+  font-size: xx-large;
 }
 #wrap{
   width: 95%;
-  margin: 5px auto 90px auto;
+  margin: 0px auto 90px auto;
   padding: 6px;
 }
 #navbar{
@@ -53,21 +62,35 @@ body{
 header{
   position: sticky;
   width: 100%;
-  height: 36px;
+  height: 38px;
   top:0;
   background-color: #e9fbf5;
 }
 #sort,#filter{
   position: absolute;
-  top: 8px;
+  top: 50%;
+  transform : translate(0,-50%);
   width: 100px;
   height: 22px;
 }
 #sort{
   left: 5%;
 }
+#sort select{
+  margin: 0px 4px;
+  width: 140px;
+  height: 26px;
+  background-color: white;
+  border: 1px #BEF3E2 solid;
+  border-radius: 1em;
+}
 #filter{
   right: 5%;
+  width: 100px;
+  height: 26px;
+  background-color: white;
+  border: 1px #BEF3E2 solid;
+  border-radius: 1em;
 }
 
 .playerCard{
@@ -79,7 +102,7 @@ header{
   background-color: white;
 }
 .playerCard p{
-  font-size: 18px;
+  font-size: 16px;
   margin: 2px 2px;
   padding: 0px 3px;
 }
@@ -101,7 +124,7 @@ header{
 /*  以下、main > filterのスタイル  */
 #filterwrap{
   width: 100%;
-  border: 1px black dotted;
+  border: 1px black solid;
   padding: 2px;
 }
 input[type="tel"]{
@@ -113,7 +136,6 @@ input[type="tel"]{
 #yearDiv,
 #posDiv,
 #persDiv {
-  border: 1px grey solid;
   margin: 2px;
   padding-left: 4px;
   display: flex;
@@ -124,9 +146,7 @@ input[type="tel"]{
 #posDiv span,
 #persDiv span {
   width: 80px;
-  vertical-align: bottom;
 }
-
 .check {
   border: 1px black dotted;
   margin: 5px 2px;
@@ -139,25 +159,24 @@ input[type="tel"]{
   background-color: blue;
   color: white;
 }
-
-#buttonwrap{
-  height: 25px;
-}
-#closeButton{
-  position: absolute;
-  bottom:5px;
-  width: 60px;
+#filterButtonWrap{
+  width: 100%;
+  display: flex;
   height: 32px;
-  left: 40%;
-  transform : translate(-50%);
+  margin-top: 10px; 
 }
-#resetButton{
-  position: absolute;
-  bottom:5px;
-  width: 50px;
+#filterButtonWrap button{
+  background-color:#BEF3E2;
+  border: none;
+  border-radius: 1em;
+  margin: auto;
   height: 30px;
-  left: 60%;
-  transform : translate(-50%);
+}
+.closeButton{
+  width: 8em;
+}
+.resetButton{
+  width: 6em;
 }
 /*  ここまでfilter  */
 /*  ここまでmain  */
@@ -190,8 +209,15 @@ input[type="tel"]{
 .posDivChild {
   margin-left: 1em;
 }
-.posDivChild *{
-  margin-right: 2px;
+.addcard select{
+  margin: 0px 4px;
+  width: 50px;
+  height: 22px;
+  background-color: white;
+  border-radius: 1em;
+}
+.persDiv select{
+  width: 98px;
 }
 .forFlex{
   display: flex;
@@ -214,7 +240,7 @@ input[type="tel"]{
   width: 130px;
   height: 32px;
   color: black;
-  font-size: 22px;
+  font: 22px "游ゴシック";
   background-color: white;
   text-decoration: none;
   position: absolute;
@@ -254,10 +280,17 @@ input[type="tel"]{
 }
 #tokunouwrap{
   width: 100%;
-  border: 1px black dotted;
+  border: 1px black solid;
   padding: 2px;
   display: flex;
   flex-wrap: wrap;
+}
+#tokunouwrap span{
+  display: block;
+  margin: 2px 2px;
+  padding: 0px 4px;
+  border-radius: 0.5em;
+  border: 1px #4689FF solid;
 }
 
 input[type="checkbox"]{
@@ -266,24 +299,25 @@ input[type="checkbox"]{
 /*  未選択のボタン  */
 .none{
   color: #89D6EF;
-  margin: 5px 2px;
-  padding: 0px 2px;
-  border-radius: 0.5em;
-  border: 1px #4689FF solid;
   background-color: #F0F2F5;
 }
 /*  選択済み  */
 .addTokuSpan {
-  margin: 5px 2px;
-  padding: 0px 2px;
-  border-radius: 0.5em;
-  border: 1px #4689FF solid;
   color: #1E6495;
   background-color: #B9F9F9;
 }
 #tokunouButtonWrap{
   width: 100%;
+  display: flex;
   height: 32px;
+  margin-top: 10px; 
+}
+#tokunouButtonWrap button{
+  background-color:#BEF3E2;
+  border: none;
+  border-radius: 1em;
+  margin: auto;
+  height: 30px;
 }
 /*  ここまでadd < tokunouPop  */
 /*  ここまでadd */

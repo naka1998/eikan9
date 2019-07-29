@@ -14,7 +14,9 @@ const customStyles = {
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    padding: '14px',
+    transform: 'translate(-50%, -50%)',
+    maxHeight: '80%'
   }
 };
 
@@ -91,11 +93,11 @@ class TokunouPop extends React.Component {
           </div>
           <div id="tokunouButtonWrap">
             <button
-              id="closeButton"
-              onClick={this.closeModal}>OK</button>
+              className="closeButton"
+              onClick={this.closeModal}>決定</button>
             <button
-              id="resetButton"
-              onClick={this.props.resetState}>Reset</button>
+              className="resetButton"
+              onClick={this.props.resetState}>リセット</button>
           </div>
         </Modal>
       </div>

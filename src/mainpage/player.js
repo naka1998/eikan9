@@ -4,12 +4,18 @@ import "../App.css"
 class TokunouDesc extends React.Component {
   renderdesc(value) {
     return (
-      <li className="tokunouList">{value}</li >
+      <li
+        key="liTokuDesc"
+        className="tokunouList">
+        {value}
+      </li >
     );
   }
   render() {
     return (
-      <ul className="tokunouUl">
+      <ul
+        key="ulTokuDesc"
+        className="tokunouUl">
         {this.props.tokunou.map((value) => this.renderdesc(value))}
       </ul>
     );
@@ -18,7 +24,9 @@ class TokunouDesc extends React.Component {
 
 const PlayerCard = (props) => {
   return (
-    <div className="playerCard">
+    <div
+      key="player"
+      className="playerCard">
       <div className="yearAndName">
         <p className="cardYear">{props.year + "年"}</p>
         <p className="cardName">{props.name}</p>
@@ -31,7 +39,9 @@ const PlayerCard = (props) => {
       <p className="cardPers">
         {"性格: " + props.pers + "→" + props.persAbility}
       </p>
-      <TokunouDesc tokunou={props.tokunou} />
+      <TokunouDesc
+        key="tokuDesc"
+        tokunou={props.tokunou} />
       <p className="cardPolicy">{"特記事項: " + props.policy}</p>
     </div>
   )

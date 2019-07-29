@@ -8,12 +8,13 @@ const customStyles = {
     backgroundColor: "rgba(0, 0, 0, 0.5)"
   },
   content: {
-    top: '25%',
+    top: '40%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
     marginRight: '-50%',
-    transform: 'translate(-50%, -50%)'
+    padding: '10px',
+    transform: 'translate(-50%, -50%)',
   }
 };
 //  filterValueに状態が入ってる
@@ -98,9 +99,9 @@ class Filter extends React.Component {
               {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => this.renderPers(i))}
             </div>
           </div>
-          <div id="buttonwrap">
-            <button id="closeButton" onClick={this.closeModal}>CLOSE</button>
-            <button id="resetButton" onClick={this.props.resetFilterState}>Reset</button>
+          <div id="filterButtonWrap">
+            <button className="closeButton" onClick={this.closeModal}>決定</button>
+            <button className="resetButton" onClick={this.props.resetFilterState}>リセット</button>
           </div>
         </Modal>
       </div >

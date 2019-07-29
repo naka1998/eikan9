@@ -3,7 +3,7 @@ import React from 'react';
 const Position = (props) => {
   return (
     <div className="posDiv">
-      <div>ポジション</div>
+      <div>ポジション:</div>
       <div className="posDivChild">
         {[0, 1, 2].map((i) => {
           return (

@@ -59,20 +59,24 @@ class AddCard extends React.Component {
     return (
       <div className="addcard" >
         <Name
+          key="nameForm"
           changeName={this.props.changeName}
           value={this.props.player["name"]}
           idNum={this.props.idNum}
           changeState={this.props.changeState} />
         <Position
+          key="posForm"
           value={this.props.player["pos"]}
           idNum={this.props.idNum}
           posChange={this.props.posChange} />
         <Personality
+          key="persForm"
           value={this.props.player["pers"]}
           idNum={this.props.idNum}
           changeState={this.props.changeState} />
         <div className="forFlex">
           <TokunouPop
+            key="tokunou"
             idNum={this.props.idNum}
             isPitcher={this.props.player["isPitcher"]}
             pitcherTokunou={this.props.pitcherTokunou}
@@ -88,11 +92,13 @@ class AddCard extends React.Component {
             resetState={this.resetState}
           />
           <TraningPolicy
+            key="policyForm"
             value={this.props.player["policy"]}
             idNum={this.props.idNum}
             changeState={this.props.changeState} />
         </div>
         <TokunouDesc
+          key="tokuDesc"
           descAry={this.props.makeAry(this.props.player.isPitcher
             ? this.state.pitcherIsChecked
             : this.state.fielderIsChecked)}
@@ -114,11 +120,11 @@ class AddSum extends React.Component {
       ]
     }
     this.fielderTokunou = [
-      "チャンス4",
-      "チャンス5",
+      "ﾁｬﾝｽ4",
+      "ﾁｬﾝｽ5",
       "対左投手",
-      "キャッチャー◯",
-      "キャッチャー◎",
+      "ｷｬｯﾁｬｰ◯",
+      "ｷｬｯﾁｬｰ◎",
       "盗塁4",
       "盗塁5",
       "走塁4",
@@ -127,42 +133,42 @@ class AddSum extends React.Component {
       "送球5",
       "ケガしにくさ4",
       "ケガしにくさ5",
-      "アベレージヒッター",
-      "パワーヒッター",
-      "プルヒッター",
+      "ｱﾍﾞﾚｰｼﾞﾋｯﾀｰ",
+      "ﾊﾟﾜｰﾋｯﾀｰ",
+      "ﾌﾟﾙﾋｯﾀｰ",
       "広角打法",
       "意外性",
       "いぶし銀",
       "お祭り男",
       "固め打ち",
       "逆境◯",
-      "プレッシャーラン",
-      "高速チャージ",
-      "サヨナラ男",
+      "ﾌﾟﾚｯｼｬｰﾗﾝ",
+      "高速ﾁｬｰｼﾞ",
+      "ｻﾖﾅﾗ男",
       "守備職人",
       "初球◯",
-      "対エース◯",
+      "対ｴｰｽ◯",
       "代打◯",
-      "チャンスメーカー",
+      "ﾁｬﾝｽﾒｰｶｰ",
       "内野安打◯",
       "流し打ち",
       "粘り打ち",
-      "ハイボールヒッター",
-      "ローボールヒッター",
-      "バント◯",
-      "バント職人",
-      "ホーム死守",
-      "ヘッドスライディング",
+      "ﾊｲﾎﾞｰﾙﾋｯﾀｰ",
+      "ﾛｰﾎﾞｰﾙﾋｯﾀｰ",
+      "ﾊﾞﾝﾄ◯",
+      "ﾊﾞﾝﾄ職人",
+      "ﾎｰﾑ死守",
+      "ﾍｯﾄﾞｽﾗｲﾃﾞｨﾝｸﾞ",
       "満塁男",
       "ムード◯",
-      "レーザービーム",
+      "ﾚｰｻﾞｰﾋﾞｰﾑ",
       "ダメ押し",
-      "インコースヒッター",
-      "アウトコースヒッター",
+      "ｲﾝｺｰｽﾋｯﾀｰ",
+      "ｱｳﾄｺｰｽﾋｯﾀｰ",
       "かく乱",
       "悪球打ち",
       "対変化球◯",
-      "ホーム突入",
+      "ﾎｰﾑ突入",
     ];
     this.pitcherTokunou = [
       "対ピンチ4",

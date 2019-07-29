@@ -4,7 +4,11 @@ import "../App.css";
 class TokunouDesc extends React.Component {
   renderdesc(i) {
     return (
-      <li className="tokunouList" key={`desc${i}`}> {this.props.tokunou[i]}</li >
+      <li
+        className="tokunouList"
+        key={`desc${i}`}>
+        {this.props.tokunou[i]}
+      </li >
     );
   }
   render() {

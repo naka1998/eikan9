@@ -341,6 +341,7 @@ class Main extends React.Component {
       : this.state.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]);
     return (
       <PlayerCard
+        key={"playerCard" + i}
         year={this.state.playerData[i]["year"]}
         name={this.state.playerData[i]["name"]}
         pos1={pos1}
