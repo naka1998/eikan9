@@ -10,12 +10,11 @@ onClickで入力データのチェック→localStorageに追加ってしたく�
 const AddBar = (props) => {
   return (
     <footer id="addbar">
-      <a
-        href="/eikan9/main"
+      <button
         className="addButton"
         onClick={props.writeJson}>
         {props.year ? "追加" : "年度未入力"}
-      </a>
+      </button>
     </footer>
   )
 }

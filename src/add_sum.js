@@ -108,7 +108,7 @@ class AddSum extends React.Component {
   constructor() {
     super();
     this.state = {
-      "year": null,
+      "year": "",
       "player": [
         { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, },
       ]
@@ -272,36 +272,42 @@ class AddSum extends React.Component {
   }
   //  ボタン押されたときに、localstorageに保存する処理
   writeJson() {
-    let allData;
-    //  localStorageになにか入ったていればそれをコピー、なければ空の配列を入れる
-    if (localStorage.getItem("player")) {
-      allData = JSON.parse(localStorage.getItem("player"));
-    } else {
-      allData = {};
-    }
-    const num = Object.keys(allData).length;
-    let ary;
-    let j = 0;
-    for (let i = 0; i <= 11; i++) {
-      ary = {};
-      if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
-        // 名前が未入力(="")ORメインポジションが未入力(=0)のときの処理
-        console.log(`${i} is false`);
+    //  yearが入力されていなければ登録できない
+    if (this.state.year) {
+      let allData;
+      //  localStorageになにか入ったていればそれをコピー、なければ空の配列を入れる
+      if (localStorage.getItem("player")) {
+        allData = JSON.parse(localStorage.getItem("player"));
       } else {
-        //  保存する選手のデータをaryに入れてく
-        ary["year"] = Number(this.state.year);
-        ary["name"] = this.state.player[i]["name"];
-        ary["pos"] = this.state.player[i]["pos"];
-        ary["pers"] = this.state.player[i]["pers"];
-        ary["tokunou"] = this.state.player[i]["tokunou"];
-        ary["policy"] = this.state.player[i]["policy"];
-        ary["isPitcher"] = this.state.player[i]["isPitcher"];
-        //  保存済みのデータの(末尾+1)番目に追加
-        allData[num + j] = ary;
-        j++;
+        allData = {};
       }
+      const num = Object.keys(allData).length;
+      let ary;
+      let j = 0;
+      for (let i = 0; i <= 11; i++) {
+        ary = {};
+        if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
+          // 名前が未入力(="")ORメインポジションが未入力(=0)のときの処理
+          console.log(`${i} is false`);
+        } else {
+          //  保存する選手のデータをaryに入れてく
+          ary["year"] = Number(this.state.year);
+          ary["name"] = this.state.player[i]["name"];
+          ary["pos"] = this.state.player[i]["pos"];
+          ary["pers"] = this.state.player[i]["pers"];
+          ary["tokunou"] = this.state.player[i]["tokunou"];
+          ary["policy"] = this.state.player[i]["policy"];
+          ary["isPitcher"] = this.state.player[i]["isPitcher"];
+          //  保存済みのデータの(末尾+1)番目に追加
+          allData[num + j] = ary;
+          j++;
+        }
+      }
+      localStorage.setItem("player", JSON.stringify(allData));
+      this.props.history.push('/eikan9/main');
+    } else {
+      alert("年度を入力してください");
     }
-    localStorage.setItem("player", JSON.stringify(allData));
   }
   render() {
     return (

@@ -39,11 +39,12 @@ class TokunouPop extends React.Component {
   //  特能は全部チェックボックスで作る
   renderPitcher(i) {
     return (
-      <label>
+      <label
+        key={"toku" + i}
+      >
         <input
           type="checkbox"
           value={i}
-          key={"toku" + i}
           onChange={(e) => this.props.changePitcherState(e, this.props.idNum)} />
         <span
           className={this.props.pitcherIsChecked[i]

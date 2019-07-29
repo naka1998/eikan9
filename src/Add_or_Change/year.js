@@ -9,8 +9,7 @@ const Year = (props) => {
           type="number"
           name="year"
           value={props.value}
-          onChange={props.changeYear}
-          placeholder="入力必須" />
+          onChange={props.changeYear} />
         <span>年度選手追加</span>
       </label>
     </div>

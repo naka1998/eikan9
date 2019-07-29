@@ -8,6 +8,7 @@ const Position = (props) => {
         {[0, 1, 2].map((i) => {
           return (
             <Pos
+              key={"pos" + i}
               value={props.value}
               num={i}
               idNum={props.idNum}
