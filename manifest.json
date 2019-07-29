@@ -1,15 +1,17 @@
 {
-  "short_name": "選手管理",
+  "short_name": "栄冠選手管理",
   "name": "栄冠ナイン-マネージャーノート",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "icon.png",
+      "sizes": "192x192 64x64 32x32 24x24 16x16",
+      "type": "image/png"
     }
   ],
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "lang": "ja-jp",
+  "description": "栄冠ナイン用選手管理アプリです"
 }
