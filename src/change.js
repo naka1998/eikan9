@@ -24,8 +24,7 @@ const customStyles = {
     maxHeight: '80%'
   }
 };
-
-
+//  選手の情報をstateとして持ち、確定ボタンが押されたときに、localStorageに書き込む
 class Change extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +42,7 @@ class Change extends React.Component {
   }
   //  初期化後すぐに呼ばれる
   componentWillMount() {
+    //  特能→isChekedへの変換
     const ary = this.state.player.tokunou.slice();
     let isChecked = this.state.player.isPitcher
       ? this.state.pitcherIsChecked.slice()
@@ -84,7 +84,7 @@ class Change extends React.Component {
     ary["isPitcher"] = ary["pos"][0] === "1";
     this.setState({
       player: ary,
-    })
+    });
   }
 
   //  pitcherの特能を変更
@@ -140,7 +140,6 @@ class Change extends React.Component {
   //  ボタン押されたときに、localstorageに保存する処理
   changeJson = () => {
     let allData = JSON.parse(localStorage.getItem("player"));
-
     let ary = {};
     ary["year"] = Number(this.state.player["year"]);
     ary["name"] = this.state.player["name"];
@@ -151,7 +150,6 @@ class Change extends React.Component {
     ary["isPitcher"] = this.state.player["isPitcher"];
     //  保存済みのデータの(idNum)番目を書き換え
     allData[this.props.idNum] = ary;
-    console.log(allData[this.props.idNum]);
     localStorage.setItem("player", JSON.stringify(allData));
     this.closeModal();
     this.props.reload();
@@ -198,14 +196,12 @@ class Change extends React.Component {
           </div>
           <button
             className="changeButton"
-            onClick={this.changeJson}
-          >確定</button>
-
+            onClick={this.changeJson}>
+            確定</button>
         </Modal >
       </div>
     );
   }
-
 }
 
 export default Change;

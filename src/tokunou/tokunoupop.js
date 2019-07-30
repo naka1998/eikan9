@@ -19,7 +19,7 @@ const customStyles = {
   }
 };
 
-/*  props
+/*  propsとして渡されるもの
 idNum,isPitcher,resetState
 changePitcherState,idNum,pitcherIsChecked,pitcherTokunou,
 changeFielderState,idNum,fielderIsChecked,fielderTokunou,
