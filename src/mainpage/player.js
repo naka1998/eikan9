@@ -1,11 +1,12 @@
 import React from 'react';
 import "../App.css"
+import Change from "../change";
 
 class TokunouDesc extends React.Component {
   renderdesc(value) {
     return (
       <li
-        key="liTokuDesc"
+        key={"liTokuDesc" + value}
         className="tokunouList">
         {value}
       </li >
@@ -27,9 +28,16 @@ const PlayerCard = (props) => {
     <div
       key="player"
       className="playerCard">
-      <div className="yearAndName">
+      <div className="yearNameChange">
         <p className="cardYear">{props.year + "年"}</p>
         <p className="cardName">{props.name}</p>
+        <Change
+          value={props.value}
+          idNum={props.idNum}
+          pitcherTokunou={props.pitcherTokunou}
+          fielderTokunou={props.fielderTokunou}
+          reload={props.reload}
+        />
       </div>
       <div className="cardPos">
         <p className="cardPos1">{"メイン: " + props.pos1}</p>

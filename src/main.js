@@ -104,7 +104,7 @@ class Main extends React.Component {
         pos: Array(8).fill(false),
         pers: Array(8).fill(false),
       },
-      playerData: this.readJson(),
+      playerData: "",
       playerNumAry: [],
     }
 
@@ -117,11 +117,13 @@ class Main extends React.Component {
   }
   //  初期化？できる
   //  constractor()の後に呼ばれるらしい
-  componentWillMount() {
-    const playerNum = Object.keys(this.state.playerData).length;
+  componentWillMount = () => {
+    const playerData = this.readJson();
+    const playerNum = Object.keys(playerData).length;
     this.setState({
       playerNum: playerNum,
       playerNumAry: Array.from(Array(playerNum).keys()),
+      playerData: playerData,
     });
   }
   //  localStorage読んで、playerDataに入れる
@@ -207,7 +209,6 @@ class Main extends React.Component {
         }
       }
     }
-    console.log(ary);
     this.setState({ playerNumAry: ary, });
   }
   //  ここまでfilterの処理
@@ -255,7 +256,6 @@ class Main extends React.Component {
         exArray.push(ary);
       }
     }
-    console.log(exArray);
     return exArray;
   }
   //  [i,pos[0]]の配列を返す
@@ -268,7 +268,6 @@ class Main extends React.Component {
         exArray.push(ary);
       }
     }
-    console.log(exArray);
     return exArray;
   }
   makeAryPers(playerArray) {
@@ -342,6 +341,10 @@ class Main extends React.Component {
     return (
       <PlayerCard
         key={"playerCard" + i}
+        idNum={i}
+        value={this.state.playerData[i]}
+        pitcherTokunou={this.pitcherTokunou}
+        fielderTokunou={this.fielderTokunou}
         year={this.state.playerData[i]["year"]}
         name={this.state.playerData[i]["name"]}
         pos1={pos1}
@@ -351,6 +354,7 @@ class Main extends React.Component {
         persAbility={persAbility}
         tokunou={tokunou}
         policy={this.state.playerData[i]["policy"]}
+        reload={this.componentWillMount}
       />
     );
   }

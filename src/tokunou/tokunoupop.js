@@ -2,7 +2,6 @@ import React from 'react';
 import '../App.css';
 import Modal from "react-modal";
 
-//  modalはポップアップ？のやつ
 const customStyles = {
   overlay: {
     zIndex: "100",
@@ -20,6 +19,11 @@ const customStyles = {
   }
 };
 
+/*  props
+idNum,isPitcher,resetState
+changePitcherState,idNum,pitcherIsChecked,pitcherTokunou,
+changeFielderState,idNum,fielderIsChecked,fielderTokunou,
+*/
 class TokunouPop extends React.Component {
   constructor(props) {
     super(props);
@@ -78,7 +82,9 @@ class TokunouPop extends React.Component {
   render() {
     return (
       <div className="tokunouDiv">
-        <button className="tokunouButton" onClick={this.openModal}>特殊能力</button>
+        <button
+          className="tokunouButton"
+          onClick={this.openModal}>特殊能力</button>
         {/* ↑<button>押すと、↓<Modal>の中身が表示されるよ */}
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -88,8 +94,8 @@ class TokunouPop extends React.Component {
         >
           <div id="tokunouwrap" >
             {this.props.isPitcher === true
-              ? this.props.pitcherAry.map((i) => this.renderPitcher(i))
-              : this.props.fielderAry.map((i) => this.renderFielder(i))}
+              ? this.props.pitcherTokunou.map((i, index) => this.renderPitcher(index))
+              : this.props.fielderTokunou.map((i, index) => this.renderFielder(index))}
           </div>
           <div id="tokunouButtonWrap">
             <button
@@ -97,7 +103,7 @@ class TokunouPop extends React.Component {
               onClick={this.closeModal}>決定</button>
             <button
               className="resetButton"
-              onClick={this.props.resetState}>リセット</button>
+              onClick={this.props.resetState}>クリア</button>
           </div>
         </Modal>
       </div>

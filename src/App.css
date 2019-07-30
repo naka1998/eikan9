@@ -106,10 +106,18 @@ header{
   margin: 2px 2px;
   padding: 0px 3px;
 }
-.yearAndName{
+.yearNameChange{
   width: 100%;
   display: flex;
   border-bottom: 1px #8b9496 solid;
+}
+.yearNameChange button {
+  position: absolute;
+  right: 5%;
+  width: 4em;
+  background-color:#BEF3E2;
+  border: none;
+  border-radius: 1em;
 }
 .cardPos{
   display: flex;
@@ -121,6 +129,18 @@ header{
   width: 100%;
   border-bottom: 1px #8b9496 solid;
 }
+/*  ここからchange  */
+.changeButton{
+  display: block;
+  width: 8em;
+  background-color:#BEF3E2;
+  border: none;
+  border-radius: 1em;
+  margin: 0 auto;
+  height: 30px;
+}
+/*  ここまでchange  */
+
 /*  以下、main > filterのスタイル  */
 #filterwrap{
   width: 100%;

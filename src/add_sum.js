@@ -80,12 +80,10 @@ class AddCard extends React.Component {
             idNum={this.props.idNum}
             isPitcher={this.props.player["isPitcher"]}
             pitcherTokunou={this.props.pitcherTokunou}
-            pitcherAry={this.props.pitcherAry}
             pitcherNum={this.props.pitcherNum}
             pitcherIsChecked={this.state.pitcherIsChecked}
             changePitcherState={this.changePitcherState}
             fielderTokunou={this.props.fielderTokunou}
-            fielderAry={this.props.fielderAry}
             fielderNum={this.props.fielderNum}
             fielderIsChecked={this.state.fielderIsChecked}
             changeFielderState={this.changeFielderState}
@@ -206,8 +204,6 @@ class AddSum extends React.Component {
     ];
     this.pitcherNum = this.pitcherTokunou.length;
     this.fielderNum = this.fielderTokunou.length;
-    this.pitcherAry = Array.from(Array(this.pitcherNum).keys());
-    this.fielderAry = Array.from(Array(this.fielderNum).keys());
 
     this.sumFunc = this.sumFunc.bind(this);
     this.changeYear = this.changeYear.bind(this);
@@ -225,8 +221,6 @@ class AddSum extends React.Component {
         fielderNum={this.fielderNum}
         fielderTokunou={this.fielderTokunou}
         pitcherTokunou={this.pitcherTokunou}
-        pitcherAry={this.pitcherAry}
-        fielderAry={this.fielderAry}
         makeAry={this.makeAry}
         sumFunc={this.sumFunc}
         posChange={this.posChange}
@@ -294,7 +288,6 @@ class AddSum extends React.Component {
         ary = {};
         if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
           // 名前が未入力(="")ORメインポジションが未入力(=0)のときの処理
-          console.log(`${i} is false`);
         } else {
           //  保存する選手のデータをaryに入れてく
           ary["year"] = Number(this.state.year);
