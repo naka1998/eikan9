@@ -4,7 +4,7 @@ import './App.css';
 const Home = () => (
   <div id="titleDiv">
     <p>栄冠ナイン<br />
-      マネージャーノート</p>
+      選手管理アプリ</p>
   </div>
 
 )
