@@ -1,5 +1,5 @@
 //  選手を一括で追加していくページ
-import React from 'react';
+import React from "react";
 import "./App.css";
 import AddBar from "./Add_or_Change/addbar";
 import Name from "./Add_or_Change/name";
@@ -15,7 +15,7 @@ class AddCard extends React.Component {
     super(props);
     this.state = {
       pitcherIsChecked: new Array(this.props.pitcherNum).fill(false),
-      fielderIsChecked: new Array(this.props.fielderNum).fill(false),
+      fielderIsChecked: new Array(this.props.fielderNum).fill(false)
     };
     this.playerData = [];
     this.changeFielderState = this.changeFielderState.bind(this);
@@ -29,7 +29,7 @@ class AddCard extends React.Component {
     // ture<->false反転
     copiedAry[e.target.value] = !copiedAry[e.target.value];
     this.setState({
-      pitcherIsChecked: copiedAry,
+      pitcherIsChecked: copiedAry
     });
     //  isChecked(true, flase)をtoukou[]数字の配列に変換
     this.props.sumFunc(idNum, copiedAry);
@@ -39,7 +39,7 @@ class AddCard extends React.Component {
     let copiedAry = this.state.fielderIsChecked.slice();
     copiedAry[e.target.value] = !copiedAry[e.target.value];
     this.setState({
-      fielderIsChecked: copiedAry,
+      fielderIsChecked: copiedAry
     });
     //  isChecked(true, flase)をtoukou[]数字の配列に変換
     this.props.sumFunc(idNum, copiedAry);
@@ -51,29 +51,32 @@ class AddCard extends React.Component {
     this.setState({
       pitcherIsChecked: new Array(this.props.pitcherNum).fill(false),
       fielderIsChecked: new Array(this.props.fielderNum).fill(false),
-      player: ary,
+      player: ary
     });
   }
 
   render() {
     return (
-      <div className="addcard" >
+      <div className="addcard">
         <Name
           key="nameForm"
           changeName={this.props.changeName}
           value={this.props.player["name"]}
           idNum={this.props.idNum}
-          changeState={this.props.changeState} />
+          changeState={this.props.changeState}
+        />
         <Position
           key="posForm"
           value={this.props.player["pos"]}
           idNum={this.props.idNum}
-          posChange={this.props.posChange} />
+          posChange={this.props.posChange}
+        />
         <Personality
           key="persForm"
           value={this.props.player["pers"]}
           idNum={this.props.idNum}
-          changeState={this.props.changeState} />
+          changeState={this.props.changeState}
+        />
         <div className="forFlex">
           <TokunouPop
             key="tokunou"
@@ -93,17 +96,23 @@ class AddCard extends React.Component {
             key="policyForm"
             value={this.props.player["policy"]}
             idNum={this.props.idNum}
-            changeState={this.props.changeState} />
+            changeState={this.props.changeState}
+          />
         </div>
         <TokunouDesc
           key="tokuDesc"
-          descAry={this.props.makeAry(this.props.player.isPitcher
-            ? this.state.pitcherIsChecked
-            : this.state.fielderIsChecked)}
-          tokunou={this.props.player["isPitcher"]
-            ? this.props.pitcherTokunou
-            : this.props.fielderTokunou} />
-      </div >
+          descAry={this.props.makeAry(
+            this.props.player.isPitcher
+              ? this.state.pitcherIsChecked
+              : this.state.fielderIsChecked
+          )}
+          tokunou={
+            this.props.player["isPitcher"]
+              ? this.props.pitcherTokunou
+              : this.props.fielderTokunou
+          }
+        />
+      </div>
     );
   }
 }
@@ -112,11 +121,106 @@ class AddSum extends React.Component {
   constructor() {
     super();
     this.state = {
-      "year": "",
-      "player": [
-        { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, }, { name: "", pos: ["0", "0", "0"], pers: 0, tokunou: [], policy: "", isPitcher: true, },
+      year: "",
+      player: [
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        },
+        {
+          name: "",
+          pos: ["0", "0", "0"],
+          pers: 0,
+          tokunou: [],
+          policy: "",
+          isPitcher: true
+        }
       ]
-    }
+    };
     this.fielderTokunou = [
       "ﾁｬﾝｽ4",
       "ﾁｬﾝｽ5",
@@ -166,7 +270,7 @@ class AddSum extends React.Component {
       "かく乱",
       "悪球打ち",
       "対変化球◯",
-      "ﾎｰﾑ突入",
+      "ﾎｰﾑ突入"
     ];
     this.pitcherTokunou = [
       "対ピンチ4",
@@ -200,7 +304,7 @@ class AddSum extends React.Component {
       "ポーカーフェイス",
       "力配分",
       "国際大会◯",
-      "回またぎ◯",
+      "回またぎ◯"
     ];
     this.pitcherNum = this.pitcherTokunou.length;
     this.fielderNum = this.fielderTokunou.length;
@@ -224,7 +328,8 @@ class AddSum extends React.Component {
         makeAry={this.makeAry}
         sumFunc={this.sumFunc}
         posChange={this.posChange}
-        changeState={this.changeState} />
+        changeState={this.changeState}
+      />
     );
   }
   //  特能のチェックボックスがチェックされてるかどうか(isChecked)を受け取り、trueのものの番号だけ並べた配列を返す
@@ -240,8 +345,8 @@ class AddSum extends React.Component {
   // yearが変更されたときの処理
   changeYear(e) {
     this.setState({
-      year: e.target.value,
-    })
+      year: e.target.value
+    });
   }
   //  特能changeしたときに呼ばれる
   //  stateのtokunouを更新
@@ -250,7 +355,7 @@ class AddSum extends React.Component {
     const descAry = this.makeAry(copiedAry);
     ary[idNum]["tokunou"] = descAry;
     this.setState({
-      player: ary,
+      player: ary
     });
   }
   //  position変更されたときの処理
@@ -259,16 +364,16 @@ class AddSum extends React.Component {
     ary[idNum]["pos"][num] = e.target.value;
     ary[idNum]["isPitcher"] = ary[idNum]["pos"][0] === "1";
     this.setState({
-      player: ary,
-    })
+      player: ary
+    });
   }
   //  position以外(name, personality, training policy)のstateが変更されたときの処理
   changeState(e, idNum) {
     let ary = JSON.parse(JSON.stringify(this.state.player));
     ary[idNum][e.target.name] = e.target.value;
     this.setState({
-      player: ary,
-    })
+      player: ary
+    });
   }
   //  ボタン押されたときに、localstorageに保存する処理
   writeJson() {
@@ -286,7 +391,10 @@ class AddSum extends React.Component {
       let j = 0;
       for (let i = 0; i <= 11; i++) {
         ary = {};
-        if (this.state.player[i]["name"] === "" || this.state.player[i]["pos"][0] === "0") {
+        if (
+          this.state.player[i]["name"] === "" ||
+          this.state.player[i]["pos"][0] === "0"
+        ) {
           // 名前が未入力(="")ORメインポジションが未入力(=0)のときの処理
         } else {
           //  保存する選手のデータをaryに入れてく
@@ -303,7 +411,7 @@ class AddSum extends React.Component {
         }
       }
       localStorage.setItem("player", JSON.stringify(allData));
-      this.props.history.push('/eikan9/main');
+      this.props.history.push("/main");
     } else {
       alert("年度を入力してください");
     }
@@ -311,15 +419,13 @@ class AddSum extends React.Component {
   render() {
     return (
       <div>
-        <Year
-          value={this.state.year}
-          changeYear={this.changeYear} />
+        <Year value={this.state.year} changeYear={this.changeYear} />
         <div id="wrap">
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((i) => this.renderAdcard(i))}
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(i =>
+            this.renderAdcard(i)
+          )}
         </div>
-        <AddBar
-          year={this.state.year}
-          writeJson={this.writeJson} />
+        <AddBar year={this.state.year} writeJson={this.writeJson} />
       </div>
     );
   }
