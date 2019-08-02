@@ -1,24 +1,32 @@
-import React from 'react';
-import './App.css';
-import { BrowserRouter, Route, NavLink } from 'react-router-dom';
-import Home from "./home"
+import React from "react";
+import "./App.css";
+import { BrowserRouter, Route, NavLink } from "react-router-dom";
+import Home from "./home";
 import Main from "./main";
 import AddSum from "./add_sum";
 
 const Nav = () => (
   <BrowserRouter>
     <div>
-      <Route exact path='/' component={Home} />
-      <Route path='/main' component={Main} />
-      <Route path='/addsum' component={AddSum} />
+      <Route exact path="/eikan/" component={Home} />
+      <Route path="/eikan/main" component={Main} />
+      <Route path="/eikan/addsum" component={AddSum} />
       <footer id="navbar">
-        <div className="navcont"><NavLink activeClassName="activeNavCont" to='/main'>ホーム</NavLink></div>
-        <div id="tatesen"></div>
-        <div className="navcont"><NavLink activeClassName="activeNavCont" to="/addsum">追加</NavLink></div>
-      </footer >
-    </div >
-  </BrowserRouter >
-)
+        <div className="navcont">
+          <NavLink activeClassName="activeNavCont" to="/eikan/main">
+            ホーム
+          </NavLink>
+        </div>
+        <div id="tatesen" />
+        <div className="navcont">
+          <NavLink activeClassName="activeNavCont" to="/eikan/addsum">
+            追加
+          </NavLink>
+        </div>
+      </footer>
+    </div>
+  </BrowserRouter>
+);
 
 class App extends React.Component {
   render() {
