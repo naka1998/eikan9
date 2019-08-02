@@ -158,7 +158,7 @@ class Change extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.openModal}>変更</button>
+        <button onClick={this.openModal}>修正</button>
         <Modal
           isOpen={this.state.modalIsOpen}
           onRequestClose={this.closeModal}
