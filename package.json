@@ -2,7 +2,7 @@
   "name": "eikan9",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://eikan9.herokuapp.com/",
+  "homepage": "https://naka1998.github.io/eikan9/",
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -11,7 +11,7 @@
     "react-scripts": "3.0.1"
   },
   "scripts": {
-    "start": "node server/server.js",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "npm run build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",

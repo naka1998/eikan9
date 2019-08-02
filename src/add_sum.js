@@ -411,7 +411,7 @@ class AddSum extends React.Component {
         }
       }
       localStorage.setItem("player", JSON.stringify(allData));
-      this.props.history.push("/main");
+      this.props.history.push("/eikan9/main");
     } else {
       alert("年度を入力してください");
     }
