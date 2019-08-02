@@ -1,3 +1,7 @@
+# 説明
+栄冠ナインで選手を管理するためのwebアプリケーションです。  
+React.jsを用いて開発しています。  
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
