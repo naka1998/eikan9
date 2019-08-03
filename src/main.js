@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import Sort from "./mainpage/sort";
 import Filter from "./mainpage/filter";
 import PlayerCard from "./mainpage/player";
@@ -6,107 +6,137 @@ import PlayerCard from "./mainpage/player";
 class Main extends React.Component {
   constructor() {
     super();
-    this.posname = ["なし", "投手", "捕手", "一塁手", "二塁手", "三塁手", "遊撃手", "外野手"];
-    this.persname = ["天才肌", "ごくふつう", "お調子者", "やんちゃ", "クール", "したたか", "内気", "熱血漢"];
-    this.persPitcher =
-      ["全体的(めっちゃ伸びる)", "全体的(平均的)", "全体的(平均的)", "球速", "コントロール, 投球フォーム", "変化球覚える, 変化球みがく", "コントロール, 変化球覚える, 変化球みがく", "球速, スタミナ"];
-    this.persFielder =
-      ["全体的(めっちゃ伸びる)", "全体的(平均的)", "走力, 肩力", "弾道, パワー", "ミート, 守備位置変更, 打席変更, 打撃フォーム", "守備力, エラー回避", "エラー回避", "パワー"];
+    this.posname = [
+      "なし",
+      "投手",
+      "捕手",
+      "一塁手",
+      "二塁手",
+      "三塁手",
+      "遊撃手",
+      "外野手"
+    ];
+    this.persname = [
+      "天才肌",
+      "ごくふつう",
+      "お調子者",
+      "やんちゃ",
+      "クール",
+      "したたか",
+      "内気",
+      "熱血漢"
+    ];
+    this.persPitcher = [
+      "全体的(めっちゃ伸びる)",
+      "全体的(平均的)",
+      "全体的(平均的)",
+      "球速",
+      "コントロール, 投球フォーム",
+      "変化球覚える, 変化球みがく",
+      "コントロール, 変化球覚える・みがく",
+      "球速, スタミナ"
+    ];
+    this.persFielder = [
+      "全体的(めっちゃ伸びる)",
+      "全体的(平均的)",
+      "走力, 肩力",
+      "弾道, パワー",
+      "ミート",
+      "守備力, エラー回避",
+      "エラー回避",
+      "パワー"
+    ];
     this.fielderTokunou = [
-      "チャンス4",
-      "チャンス5",
-      "対左投手",
-      "キャッチャー◯",
-      "キャッチャー◎",
+      "ﾁｬﾝｽ4",
+      "ﾁｬﾝｽ5",
+      "対左投手4",
+      "対左投手5",
+      "サブポジ4",
+      "サブポジ5",
       "盗塁4",
       "盗塁5",
       "走塁4",
       "走塁5",
       "送球4",
-      "送球5",
-      "ケガしにくさ4",
-      "ケガしにくさ5",
-      "アベレージヒッター",
-      "パワーヒッター",
-      "プルヒッター",
+      "ｱﾍﾞﾚｰｼﾞﾋｯﾀｰ",
+      "ﾊﾟﾜｰﾋｯﾀｰ",
+      "ﾌﾟﾙﾋｯﾀｰ",
       "広角打法",
-      "意外性",
-      "いぶし銀",
-      "お祭り男",
-      "固め打ち",
-      "逆境◯",
-      "プレッシャーラン",
-      "高速チャージ",
-      "サヨナラ男",
-      "守備職人",
-      "初球◯",
-      "対エース◯",
-      "代打◯",
-      "チャンスメーカー",
-      "内野安打◯",
       "流し打ち",
+      "固め打ち",
       "粘り打ち",
-      "ハイボールヒッター",
-      "ローボールヒッター",
-      "バント◯",
-      "バント職人",
-      "ホーム死守",
-      "ヘッドスライディング",
+      "ﾊﾞﾝﾄ◯",
+      "ﾊﾞﾝﾄ職人",
+      "内野安打◯",
+      "連打◯",
+      "初球◯",
+      "ﾁｬﾝｽﾒｰｶｰ",
       "満塁男",
+      "ｻﾖﾅﾗ男",
+      "逆境◯",
+      "代打◯",
+      "ﾊｲﾎﾞｰﾙﾋｯﾀｰ",
+      "ﾛｰﾎﾞｰﾙﾋｯﾀｰ",
+      "ﾍｯﾄﾞｽﾗｲﾃﾞｨﾝｸﾞ",
+      "威圧感",
+      "いぶし銀",
+      "ﾚｰｻﾞｰﾋﾞｰﾑ",
+      "守備職人",
+      "ブロック◯",
+      "ｷｬｯﾁｬｰ◯",
+      "ｷｬｯﾁｬｰ◎",
+      "ﾑｰﾄﾞﾒｰｶｰ",
       "ムード◯",
-      "レーザービーム",
-      "ダメ押し",
-      "インコースヒッター",
-      "アウトコースヒッター",
-      "かく乱",
-      "悪球打ち",
-      "対変化球◯",
-      "ホーム突入",
+      "4番◯",
+      "意外性",
+      "対ｴｰｽ◯"
     ];
     this.pitcherTokunou = [
       "対ピンチ4",
-      "対左打者",
-      "打たれ強さ",
+      "対ピンチ5",
+      "対左打者4",
+      "対左打者5",
+      "対ランナー4",
+      "対ランナー4",
+      "打たれ強さ4",
+      "打たれ強さ5",
       "ノビ4",
       "ノビ5",
-      "クイック",
-      "回復",
-      "威圧感",
+      "キレ4",
+      "キレ5",
+      "クイック4",
+      "クイック5",
+      "ｼﾞｬｲﾛﾎﾞｰﾙ",
       "重い球",
-      "勝ち運",
-      "緩急◯",
-      "キレ◯",
-      "緊急登板◯",
-      "クロスファイヤー",
-      "牽制◯",
-      "根性◯",
-      "ジャイロボール",
-      "尻上がり",
-      "対強打者◯",
-      "打球反応◯",
-      "奪三振",
-      "球持ち◯",
-      "闘志",
-      "内角攻め",
       "逃げ球",
-      "低め◯",
+      "尻上がり",
+      "奪三振",
+      "牽制◯",
       "リリース◯",
-      "球速安定",
-      "ポーカーフェイス",
+      "打球反応◯",
+      "勝ち運",
+      "闘志",
+      "ﾎﾟｰｶｰﾌｪｲｽ",
       "力配分",
-      "国際大会◯",
-      "回またぎ◯",
+      "威圧感",
+      "根性◯",
+      "ｸﾛｽﾌｧｲﾔｰ",
+      "緩急◯",
+      "球持ち◯",
+      "低め◯",
+      "強打者◯"
     ];
     this.state = {
       sort: 0,
       filter: {
-        year1: 0, year2: 9999,
+        year1: 0,
+        year2: 9999,
         pos: Array(8).fill(false),
-        pers: Array(8).fill(false),
+        pers: Array(8).fill(false)
       },
       playerData: "",
-      playerNumAry: [],
-    }
+      playerNumAry: []
+    };
 
     this.readJson = this.readJson.bind(this);
     this.resetFilterState = this.resetFilterState.bind(this);
@@ -123,9 +153,9 @@ class Main extends React.Component {
     this.setState({
       playerNum: playerNum,
       playerNumAry: Array.from(Array(playerNum).keys()),
-      playerData: playerData,
+      playerData: playerData
     });
-  }
+  };
   //  localStorage読んで、playerDataに入れる
   readJson() {
     let playerData;
@@ -146,7 +176,7 @@ class Main extends React.Component {
     const name = e.target.name;
     copiedAry[name] = e.target.value;
     this.setState({
-      filter: copiedAry,
+      filter: copiedAry
     });
   }
   //  filterのyear以外が変更されたときの処理
@@ -155,7 +185,7 @@ class Main extends React.Component {
     const num = e.target;
     copiedAry[num.name][num.value] = !copiedAry[num.name][num.value];
     this.setState({
-      filter: copiedAry,
+      filter: copiedAry
     });
   }
 
@@ -173,11 +203,12 @@ class Main extends React.Component {
   //  filterのresetボタンが押されたときの処理
   resetFilterState() {
     const resetState = {
-      year1: 0, year2: 9999,
+      year1: 0,
+      year2: 9999,
       pos: Array(8).fill(false),
-      pers: Array(8).fill(false),
+      pers: Array(8).fill(false)
     };
-    this.setState({ filter: resetState, });
+    this.setState({ filter: resetState });
   }
 
   //  モーダルが閉じたときに、filterのstateを反映する
@@ -194,23 +225,27 @@ class Main extends React.Component {
       const yearData = this.state.playerData[i].year;
       const posData = this.state.playerData[i].pos;
       const persData = this.state.playerData[i].pers;
-      if (yearData >= this.state.filter.year1 && yearData <= this.state.filter.year2) {
+      if (
+        yearData >= this.state.filter.year1 &&
+        yearData <= this.state.filter.year2
+      ) {
         //  ポジションに対して絞り込み
-        if (posAry.length === 0
-          || posAry.indexOf(Number(posData[0])) >= 0
-          || posAry.indexOf(Number(posData[1])) >= 0
-          || posAry.indexOf(Number(posData[2])) >= 0) {
+        if (
+          posAry.length === 0 ||
+          posAry.indexOf(Number(posData[0])) >= 0 ||
+          posAry.indexOf(Number(posData[1])) >= 0 ||
+          posAry.indexOf(Number(posData[2])) >= 0
+        ) {
           //  性格に対して絞り込み
-          if (persAry.length === 0
-            || persAry.indexOf(Number(persData)) >= 0) {
+          if (persAry.length === 0 || persAry.indexOf(Number(persData)) >= 0) {
             //  すべての条件に合致すれば、aryに追加する
             ary.push(i);
           }
         }
       }
     }
-    this.setState({ playerNumAry: ary, });
-  }
+    this.setState({ playerNumAry: ary });
+  };
   //  ここまでfilterの処理
 
   //  sortが変更されたときの処理
@@ -243,8 +278,8 @@ class Main extends React.Component {
     }
     sortedAry = this.extractAry(sortedAry);
     this.setState({
-      playerNumAry: sortedAry,
-    })
+      playerNumAry: sortedAry
+    });
   }
   //  [i,year]の配列を返す
   makeAryYear(playerArray, playerNumAry) {
@@ -264,7 +299,12 @@ class Main extends React.Component {
     for (let i = 0; i < this.state.playerNum; i++) {
       if (playerNumAry.indexOf(i) >= 0) {
         let ary = [];
-        ary = [i, playerArray[i]["pos"][0], playerArray[i]["pos"][1], playerArray[i]["pos"][2]];
+        ary = [
+          i,
+          playerArray[i]["pos"][0],
+          playerArray[i]["pos"][1],
+          playerArray[i]["pos"][2]
+        ];
         exArray.push(ary);
       }
     }
@@ -299,7 +339,7 @@ class Main extends React.Component {
     for (let i = 0; i < ary.length; i++) {
       outputAry.push(ary[i][0]);
     }
-    //  
+    //
     return outputAry;
   }
   //  boolean型の配列をtrueのindexを並べた配列に変換する
@@ -314,14 +354,16 @@ class Main extends React.Component {
   }
   //  選手リセットボタンが押されたときの処理
   allReset() {
-    const result = window.confirm("全選手のデータがクリアされます\nよろしいですか？");
+    const result = window.confirm(
+      "全選手のデータがクリアされます\nよろしいですか？"
+    );
     if (result) {
       //  確認ダイアログ出して、OK押されるとlocalStorageがクリアされる
       localStorage.clear();
       this.setState({
         playerData: {},
         playerNum: 0,
-        playerNumAry: [],
+        playerNumAry: []
       });
       //  renderされなかったら強制的に再読込
       //  window.location.reload();
@@ -336,8 +378,8 @@ class Main extends React.Component {
       ? this.persPitcher[this.state.playerData[i]["pers"]]
       : this.persFielder[this.state.playerData[i]["pers"]];
     const tokunou = this.state.playerData[i]["isPitcher"]
-      ? this.state.playerData[i]["tokunou"].map((i) => this.pitcherTokunou[i])
-      : this.state.playerData[i]["tokunou"].map((i) => this.fielderTokunou[i]);
+      ? this.state.playerData[i]["tokunou"].map(i => this.pitcherTokunou[i])
+      : this.state.playerData[i]["tokunou"].map(i => this.fielderTokunou[i]);
     return (
       <PlayerCard
         key={"playerCard" + i}
@@ -366,7 +408,8 @@ class Main extends React.Component {
             id="sort"
             key="sort"
             sortValue={this.state.sort}
-            changeSortState={this.changeSortState} />
+            changeSortState={this.changeSortState}
+          />
           <Filter
             id="filter"
             key="filter"
@@ -374,15 +417,16 @@ class Main extends React.Component {
             reflectFilter={this.reflectFilter}
             resetFilterState={this.resetFilterState}
             changeYear={this.changeYear}
-            changeState={this.changeState} />
+            changeState={this.changeState}
+          />
         </header>
         <div id="wrap">
           <div id="playerwrap">
-            {this.state.playerNumAry.map((i) => this.renderPlayercard(i))}
+            {this.state.playerNumAry.map(i => this.renderPlayercard(i))}
           </div>
           <button onClick={this.allReset}>選手リセット</button>
         </div>
-      </div >
+      </div>
     );
   }
 }

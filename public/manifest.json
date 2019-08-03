@@ -43,7 +43,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/eikan9/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#bef3e2",
   "background_color": "#ffffff",

@@ -8,18 +8,18 @@ import AddSum from "./add_sum";
 const Nav = () => (
   <BrowserRouter>
     <div>
-      <Route exact path="/eikan9/" component={Home} />
-      <Route path="/eikan9/main" component={Main} />
-      <Route path="/eikan9/addsum" component={AddSum} />
+      <Route exact path="/" component={Home} />
+      <Route path="/main" component={Main} />
+      <Route path="/addsum" component={AddSum} />
       <footer id="navbar">
         <div className="navcont">
-          <NavLink activeClassName="activeNavCont" to="/eikan9/main">
+          <NavLink activeClassName="activeNavCont" to="/main">
             ホーム
           </NavLink>
         </div>
         <div id="tatesen" />
         <div className="navcont">
-          <NavLink activeClassName="activeNavCont" to="/eikan9/addsum">
+          <NavLink activeClassName="activeNavCont" to="/addsum">
             追加
           </NavLink>
         </div>
